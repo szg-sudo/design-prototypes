@@ -11,7 +11,7 @@
   <style>
 /* ---- inlined from cds/colors_and_type.css ---- */
 /* =========================================================================
-   Coalition Design System — Type styles + font loading
+   Design System — Type styles + font loading
    Token values live in tokens.css. This file:
      1. Imports tokens.css (variables)
      2. Declares all @font-face faces for Degular / Degular Mono / Public Sans
@@ -21,7 +21,7 @@
 
 /* ---- inlined from ./tokens.css ---- */
 /* =========================================================================
-   Coalition Design System — Tokens
+   Design System — Tokens
    Source of truth: Figma "Global Tokens / Base" + "Themes / Light".
    Two layers:
      1. BASE — raw primitives, mirrored 1:1 from Figma palettes
@@ -55,7 +55,7 @@
   --color-blue-5:   #f5f9fe;
   --color-blue-10:  #d5e2f7;
   --color-blue-50:  #80a9e7;
-  --color-blue-100: #2b70d7;   /* Coalition Blue */
+  --color-blue-100: #2b70d7;   /* Brand Blue */
   --color-blue-120: #1e53a1;
   --color-blue-140: #143669;
 
@@ -322,7 +322,7 @@
      Each role has the full 6-stop palette so components can pick a
      surface tint (5/10), mid (50/100), or strong (120/140) variant.
      ===================================================================== */
-  /* Info — Coalition Blue */
+  /* Info — Brand Blue */
   --status-info-5:   var(--color-blue-5);
   --status-info-10:  var(--color-blue-10);
   --status-info-50:  var(--color-blue-50);
@@ -364,7 +364,7 @@
 
   /* =====================================================================
      LAYER 2 · SEMANTIC — Security severity
-     Coalition-specific: cyber-risk severity scale.
+     Domain-specific: cyber-risk severity scale.
      ===================================================================== */
   --severity-critical-5:   var(--color-red-5);
   --severity-critical-10:  var(--color-red-10);
@@ -397,7 +397,7 @@
   /* =====================================================================
      LAYER 2 · SEMANTIC — Brand / Accent
      The 8 single-tone accents are accessible by name.
-     "Brand" aliases keep the Coalition Blue addressable as a single role
+     "Brand" aliases keep the Brand Blue addressable as a single role
      name across components.
      ===================================================================== */
   --brand-primary:        var(--color-blue-100);
@@ -430,7 +430,7 @@
    semantic layer; then it can be deleted.
    ========================================================================= */
 :root {
-  /* ---- Primary (Coalition Blue) ---- */
+  /* ---- Primary (Brand Blue) ---- */
   --color-primary-100: var(--color-blue-5);
   --color-primary-200: var(--color-blue-10);
   --color-primary-300: var(--color-blue-50);
@@ -562,7 +562,7 @@
   --stroke-xl:  3px;
 
   /* ---- Elevation ramp ----
-     Figma Coalition spec: paired drop shadows on the same alpha,
+     Figma spec: paired drop shadows on the same alpha,
      stepping 0.04 → 0.20. E0 is flat. */
   --elevation-0: none;
   --elevation-1: 0 4px 16px 0 rgba(0,0,0,0.04), 0 16px 32px 0 rgba(0,0,0,0.04);
@@ -861,7 +861,7 @@ a {
 }
 a:hover { text-decoration: underline; }
 
-/* Focus ring — Coalition primary, 2px ring, offset 2 */
+/* Focus ring — Brand primary, 2px ring, offset 2 */
 :focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
@@ -1501,7 +1501,7 @@ html, body { margin: 0; padding: 0; background: #f0eee9; font-family: var(--font
 <body>
   <div style="font:13px/1.5 'Public Sans',system-ui,sans-serif;background:#111;color:#fff;padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
     <strong style="font-weight:600">Manage account</strong>
-    <span style="opacity:.72">Interactive prototype &middot; Shamraiz Gul &middot; built with AI-assisted tooling &middot; shared with Coalition's permission</span>
+    <span style="opacity:.72">Interactive prototype &middot; Shamraiz Gul &middot; built in code with AI-assisted tooling</span>
   </div>
   <div id="root"></div>
 
