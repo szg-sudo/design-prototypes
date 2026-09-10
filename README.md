@@ -1,8 +1,6 @@
 # Account transfer and Manage account: interactive prototypes
 
-Two working prototypes from a Coalition insurance product problem: moving an account, or specific quotes and policies, from one broker to another.
-
-Shared with Coalition's permission.
+Two working prototypes from an internal insurance product problem: moving an account, or specific quotes and policies, from one broker to another.
 
 ## Open them
 
@@ -31,10 +29,6 @@ Full decision record, including the open question still outstanding on the quote
 
 ## How these were built
 
-These were built in code as design artifacts, using AI assisted tooling to go from direction to a working, clickable prototype rather than a static mockup. React and Babel run in the browser from a CDN, there is no build step, and the intent throughout was fidelity of behaviour: real state, real edge cases, real empty and error conditions, at a level a static file cannot carry.
+These were built in code as design artifacts, using AI assisted tooling to go from direction to a working, clickable prototype rather than a static mockup. The intent throughout was fidelity of behaviour: real state, real edge cases, real empty and error conditions, at a level a static file cannot carry.
 
 They are prototypes rather than production code. They exist to make an interaction argument testable and reviewable by engineers and stakeholders before anything is committed to a sprint.
-
-## A note on the design system
-
-The visual layer uses Coalition's design tokens, spacing scale and component patterns. The licensed display typeface used in the internal build has been removed from these copies and the type is set in Public Sans, which is open licensed. Everything else renders as designed.
