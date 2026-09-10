@@ -1,0 +1,2811 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage Account - interactive prototype - Shamraiz Gul</title>
+
+  <style>
+/* ---- inlined from cds/colors_and_type.css ---- */
+/* =========================================================================
+   Coalition Design System — Type styles + font loading
+   Token values live in tokens.css. This file:
+     1. Imports tokens.css (variables)
+     2. Declares all @font-face faces for Degular / Degular Mono / Public Sans
+     3. Defines semantic type classes (h1..h6, .t-body, .t-overline, etc.)
+   ========================================================================= */
+
+
+/* ---- inlined from ./tokens.css ---- */
+/* =========================================================================
+   Coalition Design System — Tokens
+   Source of truth: Figma "Global Tokens / Base" + "Themes / Light".
+   Two layers:
+     1. BASE — raw primitives, mirrored 1:1 from Figma palettes
+     2. SEMANTIC — friendly role-based names that components should consume
+   Components should reach for the SEMANTIC layer first; only drop to the
+   BASE layer when no semantic token fits.
+   ========================================================================= */
+
+:root {
+  /* =====================================================================
+     LAYER 1 · BASE — Colors
+     Stops 5 / 10 / 50 / 100 / 120 / 140 match Figma exactly.
+     ===================================================================== */
+
+  /* Base */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Grey scale */
+  --color-grey-10: #fafafa;
+  --color-grey-20: #f5f5f5;
+  --color-grey-30: #eeeeee;
+  --color-grey-40: #e0e0e0;
+  --color-grey-50: #bdbdbd;
+  --color-grey-60: #9e9e9e;
+  --color-grey-70: #616161;
+  --color-grey-80: #303030;
+  --color-grey-90: #1a1a1a;
+
+  /* Blue */
+  --color-blue-5:   #f5f9fe;
+  --color-blue-10:  #d5e2f7;
+  --color-blue-50:  #80a9e7;
+  --color-blue-100: #2b70d7;   /* Coalition Blue */
+  --color-blue-120: #1e53a1;
+  --color-blue-140: #143669;
+
+  /* Teal */
+  --color-teal-5:   #f6fdfd;
+  --color-teal-10:  #e0f2f1;
+  --color-teal-50:  #9cdcd6;
+  --color-teal-100: #5ac4ba;
+  --color-teal-120: #339188;
+  --color-teal-140: #1c4f4a;
+
+  /* Green */
+  --color-green-5:   #f6fbf7;
+  --color-green-10:  #e8f5e9;
+  --color-green-50:  #a5d6a7;
+  --color-green-100: #4caf50;
+  --color-green-120: #357a38;
+  --color-green-140: #1e4620;
+
+  /* Yellow */
+  --color-yellow-5:   #fffdf5;
+  --color-yellow-10:  #fffbe6;
+  --color-yellow-50:  #ffed99;
+  --color-yellow-100: #ffd200;
+  --color-yellow-120: #997e00;
+  --color-yellow-140: #665400;
+
+  /* Orange */
+  --color-orange-5:   #fffbf6;
+  --color-orange-10:  #fee9d3;
+  --color-orange-50:  #fdbc7b;
+  --color-orange-100: #fc9023;
+  --color-orange-120: #d16b03;
+  --color-orange-140: #884502;
+
+  /* Purple */
+  --color-purple-5:   #f9f5ff;
+  --color-purple-10:  #ebdff4;
+  --color-purple-50:  #c29edf;
+  --color-purple-100: #9a5dca;
+  --color-purple-120: #7436a4;
+  --color-purple-140: #4b236a;
+
+  /* Burple */
+  --color-burple-5:   #f6f5fd;
+  --color-burple-10:  #ebe8fa;
+  --color-burple-50:  #a095e9;
+  --color-burple-100: #614eda;
+  --color-burple-120: #3926b5;
+  --color-burple-140: #251875;
+
+  /* Red */
+  --color-red-5:   #fff9f9;
+  --color-red-10:  #ffebee;
+  --color-red-50:  #ef9a9a;
+  --color-red-100: #e53935;
+  --color-red-120: #c62828;
+  --color-red-140: #880d1e;
+
+  /* Single-tone accents */
+  --color-sky:       #03a9f4;
+  --color-turquoise: #baf6eb;
+  --color-seafoam:   #1ec88b;
+  --color-lime:      #8bc34a;
+  --color-magenta:   #ec407a;
+  --color-pink:      #e2a5ee;
+  --color-orangy:    #ff5f21;
+  --color-gold:      #ffbb3c;
+  --color-parchment: #f5f5f3;
+  --color-sand:      #e8dfd6;
+
+  /* =====================================================================
+     LAYER 1 · BASE — Transparencies
+     One alpha ramp (5 / 15 / 20 / 40 / 60 / 80) per tone.
+     ===================================================================== */
+  --alpha-white-5:  rgba(255,255,255,0.05);
+  --alpha-white-15: rgba(255,255,255,0.15);
+  --alpha-white-20: rgba(255,255,255,0.20);
+  --alpha-white-40: rgba(255,255,255,0.40);
+  --alpha-white-60: rgba(255,255,255,0.60);
+  --alpha-white-80: rgba(255,255,255,0.80);
+
+  --alpha-black-5:  rgba(0,0,0,0.05);
+  --alpha-black-15: rgba(0,0,0,0.15);
+  --alpha-black-20: rgba(0,0,0,0.20);
+  --alpha-black-40: rgba(0,0,0,0.40);
+  --alpha-black-60: rgba(0,0,0,0.60);
+  --alpha-black-80: rgba(0,0,0,0.80);
+
+  --alpha-blue-5:  rgba(43,112,215,0.05);
+  --alpha-blue-15: rgba(43,112,215,0.15);
+  --alpha-blue-20: rgba(43,112,215,0.20);
+  --alpha-blue-40: rgba(43,112,215,0.40);
+  --alpha-blue-60: rgba(43,112,215,0.60);
+  --alpha-blue-80: rgba(43,112,215,0.80);
+
+  --alpha-teal-5:  rgba(90,196,186,0.05);
+  --alpha-teal-15: rgba(90,196,186,0.15);
+  --alpha-teal-20: rgba(90,196,186,0.20);
+  --alpha-teal-40: rgba(90,196,186,0.40);
+  --alpha-teal-60: rgba(90,196,186,0.60);
+  --alpha-teal-80: rgba(90,196,186,0.80);
+
+  --alpha-green-5:  rgba(76,175,80,0.05);
+  --alpha-green-15: rgba(76,175,80,0.15);
+  --alpha-green-20: rgba(76,175,80,0.20);
+  --alpha-green-40: rgba(76,175,80,0.40);
+  --alpha-green-60: rgba(76,175,80,0.60);
+  --alpha-green-80: rgba(76,175,80,0.80);
+
+  --alpha-yellow-5:  rgba(255,210,0,0.05);
+  --alpha-yellow-15: rgba(255,210,0,0.15);
+  --alpha-yellow-20: rgba(255,210,0,0.20);
+  --alpha-yellow-40: rgba(255,210,0,0.40);
+  --alpha-yellow-60: rgba(255,210,0,0.60);
+  --alpha-yellow-80: rgba(255,210,0,0.80);
+
+  --alpha-orange-5:  rgba(252,144,35,0.05);
+  --alpha-orange-15: rgba(252,144,35,0.15);
+  --alpha-orange-20: rgba(252,144,35,0.20);
+  --alpha-orange-40: rgba(252,144,35,0.40);
+  --alpha-orange-60: rgba(252,144,35,0.60);
+  --alpha-orange-80: rgba(252,144,35,0.80);
+
+  --alpha-purple-5:  rgba(154,93,202,0.05);
+  --alpha-purple-15: rgba(154,93,202,0.15);
+  --alpha-purple-20: rgba(154,93,202,0.20);
+  --alpha-purple-40: rgba(154,93,202,0.40);
+  --alpha-purple-60: rgba(154,93,202,0.60);
+  --alpha-purple-80: rgba(154,93,202,0.80);
+
+  --alpha-burple-5:  rgba(97,78,218,0.05);
+  --alpha-burple-15: rgba(97,78,218,0.15);
+  --alpha-burple-20: rgba(97,78,218,0.20);
+  --alpha-burple-40: rgba(97,78,218,0.40);
+  --alpha-burple-60: rgba(97,78,218,0.60);
+  --alpha-burple-80: rgba(97,78,218,0.80);
+
+  --alpha-red-5:  rgba(229,57,53,0.05);
+  --alpha-red-15: rgba(229,57,53,0.15);
+  --alpha-red-20: rgba(229,57,53,0.20);
+  --alpha-red-40: rgba(229,57,53,0.40);
+  --alpha-red-60: rgba(229,57,53,0.60);
+  --alpha-red-80: rgba(229,57,53,0.80);
+
+  /* =====================================================================
+     LAYER 1 · BASE — Type primitives
+     ===================================================================== */
+  --font-family-display: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-family-body:    "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Weight names match Figma: Regular / Medium / Semibold / Bold / Extra */
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+  --font-weight-extra:    800;
+
+  /* Font sizes — every value present in Figma Base.Size */
+  --font-size-7-5:  7.5px;
+  --font-size-9:    9px;
+  --font-size-10:   10px;
+  --font-size-10-5: 10.5px;
+  --font-size-12:   12px;
+  --font-size-14:   14px;
+  --font-size-16:   16px;
+  --font-size-18:   18px;
+  --font-size-20:   20px;
+  --font-size-24:   24px;
+  --font-size-28:   28px;
+  --font-size-30:   30px;
+  --font-size-32:   32px;
+  --font-size-36:   36px;
+  --font-size-40:   40px;
+  --font-size-48:   48px;
+  --font-size-54:   54px;
+  --font-size-64:   64px;
+  --font-size-72:   72px;
+
+  /* Line heights — every value present in Figma Base.Line Height */
+  --line-height-8:  8px;
+  --line-height-10: 10px;
+  --line-height-12: 12px;
+  --line-height-13: 13px;
+  --line-height-14: 14px;
+  --line-height-16: 16px;
+  --line-height-18: 18px;
+  --line-height-20: 20px;
+  --line-height-24: 24px;
+  --line-height-26: 26px;
+  --line-height-28: 28px;
+  --line-height-30: 30px;
+  --line-height-32: 32px;
+  --line-height-34: 34px;
+  --line-height-36: 36px;
+  --line-height-38: 38px;
+  --line-height-40: 40px;
+  --line-height-44: 44px;
+  --line-height-48: 48px;
+  --line-height-54: 54px;
+  --line-height-58: 58px;
+  --line-height-68: 68px;
+  --line-height-76: 76px;
+  --line-height-90: 90px;
+
+  /* Letter spacing — Figma values are em units */
+  --tracking-none: 0;
+  --tracking-sm:   0.15em;   /* Figma "SM (15)" */
+  --tracking-md:   0.20em;   /* Figma "MD (20)" */
+  --tracking-lg:   1.50em;   /* Figma "L (150)"  — eyebrows / overlines */
+
+  /* =====================================================================
+     LAYER 1 · BASE — Stroke / Radius
+     ===================================================================== */
+  --stroke-none: 0;
+  --stroke-xs:   1px;
+  --stroke-sm:   2px;
+  --stroke-md:   3px;
+  --stroke-lg:   4px;
+  --stroke-xl:   6px;
+  --stroke-2xl:  8px;
+  --stroke-3xl:  10px;
+  --stroke-4xl:  12px;
+
+  --radius-none: 0;
+  --radius-xxs:  2px;
+  --radius-xs:   4px;
+  --radius-s:    8px;
+  --radius-m:    12px;
+  --radius-l:    16px;
+  --radius-xl:   24px;
+  --radius-2xl:  48px;
+  --radius-full: 999px;
+
+  /* Back-compat aliases for the previous naming. */
+  --radius-sm:   var(--radius-s);
+  --radius-md:   var(--radius-m);
+  --radius-lg:   var(--radius-l);
+
+  /* =====================================================================
+     LAYER 2 · SEMANTIC — Thematic (text / surface / border)
+     Mirrors Figma "Themes / Light / Thematic".
+     ===================================================================== */
+  --text-primary:        var(--color-grey-90);   /* #1a1a1a */
+  --text-secondary:      var(--color-grey-70);   /* #616161 */
+  --text-disabled:       var(--color-grey-60);   /* #9e9e9e */
+  --text-on-dark:        var(--color-white);
+  --text-link:           var(--color-blue-100);
+
+  --surface-default:     var(--color-white);
+  --surface-subtle:      var(--color-grey-10);   /* #fafafa */
+  --surface-muted:       var(--color-grey-30);   /* #eeeeee */
+  --surface-disabled:    var(--color-grey-20);   /* #f5f5f5 */
+  --surface-inverse:     var(--color-black);
+  --surface-highlight-on-dark: var(--color-grey-80); /* #303030 */
+
+  --border-default:      var(--color-grey-50);   /* #bdbdbd */
+  --border-disabled:     var(--color-grey-40);   /* #e0e0e0 */
+  --border-subtle:       var(--color-grey-30);   /* #eeeeee */
+  --border-focus:        var(--color-blue-100);
+
+  /* =====================================================================
+     LAYER 2 · SEMANTIC — Status (Utilities)
+     Each role has the full 6-stop palette so components can pick a
+     surface tint (5/10), mid (50/100), or strong (120/140) variant.
+     ===================================================================== */
+  /* Info — Coalition Blue */
+  --status-info-5:   var(--color-blue-5);
+  --status-info-10:  var(--color-blue-10);
+  --status-info-50:  var(--color-blue-50);
+  --status-info-100: var(--color-blue-100);
+  --status-info-120: var(--color-blue-120);
+  --status-info-140: var(--color-blue-140);
+
+  /* Success — Green */
+  --status-success-5:   var(--color-green-5);
+  --status-success-10:  var(--color-green-10);
+  --status-success-50:  var(--color-green-50);
+  --status-success-100: var(--color-green-100);
+  --status-success-120: var(--color-green-120);
+  --status-success-140: var(--color-green-140);
+
+  /* Warning — Orange (NB: Figma uses Orange, not Yellow, for warnings) */
+  --status-warning-5:   var(--color-orange-5);
+  --status-warning-10:  var(--color-orange-10);
+  --status-warning-50:  var(--color-orange-50);
+  --status-warning-100: var(--color-orange-100);
+  --status-warning-120: var(--color-orange-120);
+  --status-warning-140: var(--color-orange-140);
+
+  /* Error — Red */
+  --status-error-5:   var(--color-red-5);
+  --status-error-10:  var(--color-red-10);
+  --status-error-50:  var(--color-red-50);
+  --status-error-100: var(--color-red-100);
+  --status-error-120: var(--color-red-120);
+  --status-error-140: var(--color-red-140);
+
+  /* AI — Burple */
+  --status-ai-5:   var(--color-burple-5);
+  --status-ai-10:  var(--color-burple-10);
+  --status-ai-50:  var(--color-burple-50);
+  --status-ai-100: var(--color-burple-100);
+  --status-ai-120: var(--color-burple-120);
+  --status-ai-140: var(--color-burple-140);
+
+  /* =====================================================================
+     LAYER 2 · SEMANTIC — Security severity
+     Coalition-specific: cyber-risk severity scale.
+     ===================================================================== */
+  --severity-critical-5:   var(--color-red-5);
+  --severity-critical-10:  var(--color-red-10);
+  --severity-critical-50:  var(--color-red-50);
+  --severity-critical-100: var(--color-red-100);
+  --severity-critical-120: var(--color-red-120);
+  --severity-critical-140: var(--color-red-140);
+
+  --severity-high-5:   var(--color-orange-5);
+  --severity-high-10:  var(--color-orange-10);
+  --severity-high-50:  var(--color-orange-50);
+  --severity-high-100: var(--color-orange-100);
+  --severity-high-120: var(--color-orange-120);
+  --severity-high-140: var(--color-orange-140);
+
+  --severity-medium-5:   var(--color-yellow-5);
+  --severity-medium-10:  var(--color-yellow-10);
+  --severity-medium-50:  var(--color-yellow-50);
+  --severity-medium-100: var(--color-yellow-100);
+  --severity-medium-120: var(--color-yellow-120);
+  --severity-medium-140: var(--color-yellow-140);
+
+  --severity-low-5:   var(--color-teal-5);
+  --severity-low-10:  var(--color-teal-10);
+  --severity-low-50:  var(--color-teal-50);
+  --severity-low-100: var(--color-teal-100);
+  --severity-low-120: var(--color-teal-120);
+  --severity-low-140: var(--color-teal-140);
+
+  /* =====================================================================
+     LAYER 2 · SEMANTIC — Brand / Accent
+     The 8 single-tone accents are accessible by name.
+     "Brand" aliases keep the Coalition Blue addressable as a single role
+     name across components.
+     ===================================================================== */
+  --brand-primary:        var(--color-blue-100);
+  --brand-primary-hover:  var(--color-blue-120);
+  --brand-primary-pressed:var(--color-blue-140);
+  --brand-primary-tint:   var(--color-blue-10);
+  --brand-primary-subtle: var(--color-blue-5);
+
+  --accent-sky:       var(--color-sky);
+  --accent-turquoise: var(--color-turquoise);
+  --accent-seafoam:   var(--color-seafoam);
+  --accent-lime:      var(--color-lime);
+  --accent-magenta:   var(--color-magenta);
+  --accent-pink:      var(--color-pink);
+  --accent-orangy:    var(--color-orangy);
+  --accent-gold:      var(--color-gold);
+  --accent-parchment: var(--color-parchment);
+  --accent-sand:      var(--color-sand);
+}
+
+/* =========================================================================
+   LEGACY COMPAT ALIASES
+   The previous design system used a 9-stop ramp (100..900) and separate
+   --color-error / --color-warning / --color-success / --color-accent ramps.
+   These names are kept here as aliases over the new tokens so existing
+   components continue to render unchanged. NEW work should use the
+   semantic tokens above.
+
+   Update plan: this block stays until every component has migrated to the
+   semantic layer; then it can be deleted.
+   ========================================================================= */
+:root {
+  /* ---- Primary (Coalition Blue) ---- */
+  --color-primary-100: var(--color-blue-5);
+  --color-primary-200: var(--color-blue-10);
+  --color-primary-300: var(--color-blue-50);
+  --color-primary-400: #558cde;                 /* interpolated, no Figma equiv */
+  --color-primary-500: var(--color-blue-100);
+  --color-primary-600: var(--color-blue-120);
+  --color-primary-700: var(--color-blue-140);
+  --color-primary-800: #0d2c57;                 /* interpolated, darker than 140 */
+  --color-primary-900: #06172e;
+  --color-primary:         var(--brand-primary);
+  --color-primary-hover:   var(--brand-primary-hover);
+  --color-primary-pressed: var(--brand-primary-pressed);
+  --color-primary-tint:    var(--brand-primary-tint);
+  --color-primary-tint-2:  var(--color-blue-50);
+  --color-primary-soft:    var(--color-blue-100);
+  --color-primary-surface: var(--color-blue-10);
+
+  /* ---- Secondary (was cool-slate; map to grey scale) ---- */
+  --color-secondary-100: var(--color-grey-30);
+  --color-secondary-200: var(--color-grey-40);
+  --color-secondary-300: var(--color-grey-50);
+  --color-secondary-400: var(--color-grey-60);
+  --color-secondary-500: var(--color-grey-70);
+  --color-secondary-600: var(--color-grey-80);
+  --color-secondary-700: var(--color-grey-90);
+  --color-secondary-800: var(--color-black);
+
+  /* ---- Neutrals (legacy 0..1000 → grey-10..90) ---- */
+  --color-neutral-0:    var(--color-white);
+  --color-neutral-50:   var(--color-grey-10);
+  --color-neutral-100:  var(--color-grey-20);
+  --color-neutral-200:  var(--color-grey-30);
+  --color-neutral-300:  var(--color-grey-40);
+  --color-neutral-400:  var(--color-grey-50);
+  --color-neutral-500:  var(--color-grey-60);
+  --color-neutral-600:  #757575;
+  --color-neutral-700:  var(--color-grey-70);
+  --color-neutral-800:  #424242;
+  --color-neutral-900:  #212121;
+  --color-neutral-1000: var(--color-grey-90);
+
+  /* ---- Accent (was a coral red ramp; map to red palette) ---- */
+  --color-accent-100: var(--color-red-5);
+  --color-accent-200: var(--color-red-10);
+  --color-accent-300: var(--color-red-50);
+  --color-accent-400: var(--color-red-100);
+  --color-accent-500: var(--color-red-120);
+  --color-accent-600: var(--color-red-140);
+  --color-accent-700: var(--color-red-140);
+
+  /* ---- Error / Warning / Success / Info ramps ---- */
+  --color-error-100: var(--status-error-5);
+  --color-error-200: var(--status-error-10);
+  --color-error-300: var(--status-error-50);
+  --color-error-400: #d96356;
+  --color-error-500: var(--status-error-100);
+  --color-error-600: var(--status-error-120);
+  --color-error-700: #c21952;
+  --color-error-800: var(--status-error-140);
+
+  --color-warning-100: var(--status-warning-5);
+  --color-warning-200: var(--status-warning-10);
+  --color-warning-300: var(--status-warning-50);
+  --color-warning-400: var(--status-warning-100);
+  --color-warning-500: var(--status-warning-100);
+  --color-warning-600: var(--status-warning-120);
+  --color-warning-700: var(--status-warning-140);
+
+  --color-success-100: var(--status-success-5);
+  --color-success-200: var(--status-success-10);
+  --color-success-300: var(--status-success-50);
+  --color-success-400: #49d685;
+  --color-success-500: var(--status-success-100);
+  --color-success-600: var(--status-success-120);
+  --color-success-700: var(--status-success-120);
+  --color-success-800: var(--status-success-140);
+
+  --color-info-100: var(--status-info-5);
+  --color-info-500: var(--status-info-100);
+
+  /* ---- fg / bg / border semantic legacy aliases ---- */
+  --fg-primary:    var(--text-primary);
+  --fg-secondary:  var(--text-secondary);
+  --fg-tertiary:   var(--color-grey-60);
+  --fg-disabled:   var(--text-disabled);
+  --fg-on-primary: var(--text-on-dark);
+  --fg-link:       var(--text-link);
+
+  --bg-primary:    var(--surface-default);
+  --bg-secondary:  var(--surface-subtle);
+  --bg-tertiary:   var(--surface-disabled);
+  --bg-canvas:     #f7f9fc;
+  --bg-sunken:     var(--surface-muted);
+
+  /* ---- Spacing scale ---- */
+  --space-none: 0;
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lmd: 20px;   /* "large-md" — the 20px step */
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 56px;
+  --space-4xl: 64px;
+  --space-5xl: 72px;
+  --space-6xl: 80px;
+
+  /* Back-compat with previous product-convention names */
+  --space-0:   var(--space-none);
+  --space-s:   var(--space-lg);    /* 24 */
+  --space-m:   var(--space-xl);    /* 32 */
+  --space-l:   40px;               /* legacy only — no longer in scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ---- Legacy radius aliases ---- */
+  --radius-2xs:  var(--radius-xxs);   /* 2 */
+  --radius-3xl:  40px;
+
+  /* ---- Legacy stroke aliases ---- */
+  --stroke-l:   var(--stroke-sm);     /* 2 */
+  --stroke-xl:  3px;
+
+  /* ---- Elevation ramp ----
+     Figma Coalition spec: paired drop shadows on the same alpha,
+     stepping 0.04 → 0.20. E0 is flat. */
+  --elevation-0: none;
+  --elevation-1: 0 4px 16px 0 rgba(0,0,0,0.04), 0 16px 32px 0 rgba(0,0,0,0.04);
+  --elevation-2: 0 4px 16px 0 rgba(0,0,0,0.08), 0 16px 32px 0 rgba(0,0,0,0.08);
+  --elevation-3: 0 4px 16px 0 rgba(0,0,0,0.12), 0 16px 32px 0 rgba(0,0,0,0.12);
+  --elevation-4: 0 4px 16px 0 rgba(0,0,0,0.16), 0 16px 40px 0 rgba(0,0,0,0.16);
+  --elevation-5: 0 4px 16px 0 rgba(0,0,0,0.20), 0 16px 48px 0 rgba(0,0,0,0.20);
+  --elevation-card:   0 3px 50px rgba(0,0,0,0.07);
+  --elevation-sunken: inset 0 2px 4px rgba(0,0,0,0.06);
+  --elevation-glow:   0 0 0 4px var(--alpha-blue-20);
+
+  /* ---- Legacy font family / size / weight / line-height aliases ---- */
+  --font-display: var(--font-family-display);
+  --font-body:    var(--font-family-body);
+  --font-ui:      var(--font-family-body);
+  --font-data:    var(--font-family-body);
+  --font-mono:    "Public Sans", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --fs-xs:   var(--font-size-10);
+  --fs-s:    var(--font-size-12);
+  --fs-base: var(--font-size-14);
+  --fs-md:   var(--font-size-16);
+  --fs-lg:   var(--font-size-18);
+  --fs-xl:   var(--font-size-20);
+  --fs-2xl:  var(--font-size-24);
+  --fs-3xl:  var(--font-size-28);
+  --fs-4xl:  var(--font-size-36);
+  --fs-5xl:  var(--font-size-48);
+  --fs-6xl:  var(--font-size-64);
+  --fs-7xl:  var(--font-size-72);
+  --fs-8xl:  100px;
+
+  --fw-regular:  var(--font-weight-regular);
+  --fw-medium:   var(--font-weight-medium);
+  --fw-semibold: var(--font-weight-semibold);
+  --fw-bold:     var(--font-weight-bold);
+
+  --lh-tight:   1;
+  --lh-snug:    1.2;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.4px;
+  --tracking-caps:   0.08em;
+}
+
+
+/* ---- Fonts ----
+   Brand fonts now load locally from `/fonts/`:
+   - Degular            → display / hero / marketing
+   - Degular Mono       → mono / code / labels (DS extension, not in Figma Base)
+   - Public Sans        → body + UI (tables, inputs, buttons)
+   The Figma Base tokens list only Degular + Public Sans as canonical
+   families; Degular Mono is kept here as a useful product-side extension.
+*/
+
+/* Degular — full weight set (100 thin → 900 black), italics included */
+/* Degular Mono — full weight set */
+/* Public Sans — full weight set */
+/* =========================================================================
+   TYPE THEMES — Web (default) + Print
+   Two parallel sets of size/leading tokens, both reachable through the
+   same semantic class names (.t-display-xl, .t-h1, .t-body-md, …).
+   Switch a subtree to print by adding `.t-theme-print` (or
+   data-typography="print") to a container.
+
+   Each token follows the pattern:
+     --ts-<role>-<step>-fs   font-size
+     --ts-<role>-<step>-lh   line-height
+     --ts-<role>-<step>-ls   letter-spacing (absolute px, per Figma)
+   ========================================================================= */
+
+:root,
+.t-theme-web,
+[data-typography="web"] {
+  /* ---- Display (Degular Bold) ---- */
+  --ts-display-xl-fs:   72px; --ts-display-xl-lh:   90px; --ts-display-xl-ls:   0;
+  --ts-display-lg-fs:   64px; --ts-display-lg-lh:   76px; --ts-display-lg-ls:   0;
+  --ts-display-md-fs:   48px; --ts-display-md-lh:   54px; --ts-display-md-ls:   0;
+  --ts-display-sm-fs:   36px; --ts-display-sm-lh:   48px; --ts-display-sm-ls:   0;
+  --ts-display-xs-fs:   28px; --ts-display-xs-lh:   34px; --ts-display-xs-ls:   0;
+  --ts-display-xxs-fs:  24px; --ts-display-xxs-lh:  28px; --ts-display-xxs-ls:  0;
+  --ts-display-xxxs-fs: 18px; --ts-display-xxxs-lh: 18px; --ts-display-xxxs-ls: 0;
+
+  /* ---- Headings (Public Sans) ---- */
+  --ts-h1-fs: 48px; --ts-h1-lh: 58px; --ts-h1-ls: 0;
+  --ts-h2-fs: 40px; --ts-h2-lh: 48px; --ts-h2-ls: 0;
+  --ts-h3-fs: 32px; --ts-h3-lh: 38px; --ts-h3-ls: 0;
+  --ts-h4-fs: 24px; --ts-h4-lh: 32px; --ts-h4-ls: 0;
+  --ts-h5-fs: 20px; --ts-h5-lh: 28px; --ts-h5-ls: 0;
+  --ts-h6-fs: 18px; --ts-h6-lh: 26px; --ts-h6-ls: 0;
+
+  /* ---- Body (Public Sans) ---- */
+  --ts-body-lg-fs: 18px; --ts-body-lg-lh: 24px; --ts-body-lg-ls: 0;
+  --ts-body-md-fs: 16px; --ts-body-md-lh: 20px; --ts-body-md-ls: 0.15px;
+  --ts-body-sm-fs: 14px; --ts-body-sm-lh: 18px; --ts-body-sm-ls: 0.15px;
+  --ts-body-xs-fs: 12px; --ts-body-xs-lh: 16px; --ts-body-xs-ls: 0.15px;
+
+  /* ---- UI (Public Sans) ---- */
+  --ts-overline-lg-fs: 14px; --ts-overline-lg-lh: 14px; --ts-overline-lg-ls: 1.5px;
+  --ts-overline-sm-fs: 12px; --ts-overline-sm-lh: 12px; --ts-overline-sm-ls: 1.5px;
+  --ts-caption-fs:     12px; --ts-caption-lh:     12px; --ts-caption-ls:     0.2px;
+  --ts-legal-fs:       10px; --ts-legal-lh:       12px; --ts-legal-ls:       0;
+}
+
+/* Print theme — "Points as Pixels (rounded)" from the Figma print spec.
+   Numbers are rendered as pixels; the same class names map to the smaller
+   print ramp inside a `.t-theme-print` subtree. */
+.t-theme-print,
+[data-typography="print"] {
+  --ts-display-xl-fs:   54px;  --ts-display-xl-lh:   68px;
+  --ts-display-lg-fs:   48px;  --ts-display-lg-lh:   58px;
+  --ts-display-md-fs:   30px;  --ts-display-md-lh:   40px;
+  --ts-display-sm-fs:   28px;  --ts-display-sm-lh:   30px;
+  --ts-display-xs-fs:   20px;  --ts-display-xs-lh:   24px;
+  --ts-display-xxs-fs:  14px;  --ts-display-xxs-lh:  18px;
+  --ts-display-xxxs-fs: 10px;  --ts-display-xxxs-lh: 12px;
+
+  --ts-h1-fs: 36px; --ts-h1-lh: 44px;
+  --ts-h2-fs: 30px; --ts-h2-lh: 36px;
+  --ts-h3-fs: 24px; --ts-h3-lh: 28px;
+  --ts-h4-fs: 18px; --ts-h4-lh: 24px;
+  --ts-h5-fs: 16px; --ts-h5-lh: 20px;
+  --ts-h6-fs: 14px; --ts-h6-lh: 18px;
+
+  --ts-body-lg-fs: 14px;   --ts-body-lg-lh: 18px;
+  --ts-body-md-fs: 12px;   --ts-body-md-lh: 14px;
+  --ts-body-sm-fs: 10.5px; --ts-body-sm-lh: 13px;
+  --ts-body-xs-fs: 9px;    --ts-body-xs-lh: 12px;
+
+  --ts-overline-lg-fs: 10.5px; --ts-overline-lg-lh: 10px;
+  --ts-overline-sm-fs: 9px;    --ts-overline-sm-lh: 8px;
+  --ts-caption-fs:     9px;    --ts-caption-lh:     8px;
+  --ts-legal-fs:       7.5px;  --ts-legal-lh:       8px;
+}
+
+/* =========================================================================
+   SEMANTIC TYPE CLASSES
+   ========================================================================= */
+
+html, body {
+  font-family: var(--font-family-body);
+  font-size: var(--ts-body-sm-fs);
+  line-height: var(--ts-body-sm-lh);
+  letter-spacing: var(--ts-body-sm-ls);
+  color: var(--text-primary);
+  background: var(--surface-default);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ----------------------------------------------------------------- DISPLAY
+   Degular Bold across all steps. Tightest ramp in the system. */
+.t-display-xl, .t-display-lg, .t-display-md, .t-display-sm,
+.t-display-xs, .t-display-xxs, .t-display-xxxs {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+.t-display-xl   { font-size: var(--ts-display-xl-fs);   line-height: var(--ts-display-xl-lh);   letter-spacing: var(--ts-display-xl-ls); }
+.t-display-lg   { font-size: var(--ts-display-lg-fs);   line-height: var(--ts-display-lg-lh);   letter-spacing: var(--ts-display-lg-ls); }
+.t-display-md   { font-size: var(--ts-display-md-fs);   line-height: var(--ts-display-md-lh);   letter-spacing: var(--ts-display-md-ls); }
+.t-display-sm   { font-size: var(--ts-display-sm-fs);   line-height: var(--ts-display-sm-lh);   letter-spacing: var(--ts-display-sm-ls); }
+.t-display-xs   { font-size: var(--ts-display-xs-fs);   line-height: var(--ts-display-xs-lh);   letter-spacing: var(--ts-display-xs-ls); }
+.t-display-xxs  { font-size: var(--ts-display-xxs-fs);  line-height: var(--ts-display-xxs-lh);  letter-spacing: var(--ts-display-xxs-ls); }
+.t-display-xxxs { font-size: var(--ts-display-xxxs-fs); line-height: var(--ts-display-xxxs-lh); letter-spacing: var(--ts-display-xxxs-ls); }
+
+/* Back-compat aliases used by older preview files. */
+.t-display-1 { font-family: var(--font-family-display); font-weight: var(--font-weight-bold); font-size: var(--ts-display-xl-fs); line-height: var(--ts-display-xl-lh); letter-spacing: var(--ts-display-xl-ls); }
+.t-display-2 { font-family: var(--font-family-display); font-weight: var(--font-weight-bold); font-size: var(--ts-display-lg-fs); line-height: var(--ts-display-lg-lh); letter-spacing: var(--ts-display-lg-ls); }
+
+/* ----------------------------------------------------------------- HEADINGS
+   Public Sans. Regular by default, `-bold` modifier for emphasis. */
+h1, .t-h1, .t-h1-bold,
+h2, .t-h2, .t-h2-bold,
+h3, .t-h3, .t-h3-bold,
+h4, .t-h4, .t-h4-bold,
+h5, .t-h5, .t-h5-bold,
+h6, .t-h6, .t-h6-bold {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  margin: 0;
+}
+.t-h1-bold, .t-h2-bold, .t-h3-bold, .t-h4-bold, .t-h5-bold, .t-h6-bold,
+h1, h2, h3, h4, h5, h6 { font-weight: var(--font-weight-bold); }
+
+.t-h1, .t-h1-bold, h1 { font-size: var(--ts-h1-fs); line-height: var(--ts-h1-lh); letter-spacing: var(--ts-h1-ls); }
+.t-h2, .t-h2-bold, h2 { font-size: var(--ts-h2-fs); line-height: var(--ts-h2-lh); letter-spacing: var(--ts-h2-ls); }
+.t-h3, .t-h3-bold, h3 { font-size: var(--ts-h3-fs); line-height: var(--ts-h3-lh); letter-spacing: var(--ts-h3-ls); }
+.t-h4, .t-h4-bold, h4 { font-size: var(--ts-h4-fs); line-height: var(--ts-h4-lh); letter-spacing: var(--ts-h4-ls); }
+.t-h5, .t-h5-bold, h5 { font-size: var(--ts-h5-fs); line-height: var(--ts-h5-lh); letter-spacing: var(--ts-h5-ls); }
+.t-h6, .t-h6-bold, h6 { font-size: var(--ts-h6-fs); line-height: var(--ts-h6-lh); letter-spacing: var(--ts-h6-ls); }
+
+/* ----------------------------------------------------------------- BODY
+   Public Sans. Four sizes × five weight/style modifiers. */
+[class^="t-body-"], [class*=" t-body-"], p {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-style: normal;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.t-body-lg,
+.t-body-lg-regular,
+.t-body-lg-semibold,
+.t-body-lg-bold,
+.t-body-lg-italic,
+.t-body-lg-bold-italic { font-size: var(--ts-body-lg-fs); line-height: var(--ts-body-lg-lh); letter-spacing: var(--ts-body-lg-ls); }
+
+.t-body-md,
+.t-body-md-regular,
+.t-body-md-semibold,
+.t-body-md-bold,
+.t-body-md-italic,
+.t-body-md-bold-italic,
+p { font-size: var(--ts-body-md-fs); line-height: var(--ts-body-md-lh); letter-spacing: var(--ts-body-md-ls); }
+
+.t-body-sm,
+.t-body-sm-regular,
+.t-body-sm-semibold,
+.t-body-sm-bold,
+.t-body-sm-italic,
+.t-body-sm-bold-italic { font-size: var(--ts-body-sm-fs); line-height: var(--ts-body-sm-lh); letter-spacing: var(--ts-body-sm-ls); }
+
+.t-body-xs,
+.t-body-xs-regular,
+.t-body-xs-semibold,
+.t-body-xs-bold,
+.t-body-xs-italic,
+.t-body-xs-bold-italic { font-size: var(--ts-body-xs-fs); line-height: var(--ts-body-xs-lh); letter-spacing: var(--ts-body-xs-ls); }
+
+.t-body-lg-semibold, .t-body-md-semibold, .t-body-sm-semibold, .t-body-xs-semibold { font-weight: var(--font-weight-semibold); }
+.t-body-lg-bold,     .t-body-md-bold,     .t-body-sm-bold,     .t-body-xs-bold     { font-weight: var(--font-weight-bold); }
+.t-body-lg-italic,   .t-body-md-italic,   .t-body-sm-italic,   .t-body-xs-italic   { font-style: italic; }
+.t-body-lg-bold-italic, .t-body-md-bold-italic, .t-body-sm-bold-italic, .t-body-xs-bold-italic { font-weight: var(--font-weight-bold); font-style: italic; }
+
+/* ----------------------------------------------------------------- UI
+   Overlines, captions, legal. All Public Sans. */
+.t-overline-lg, .t-overline-lg-bold,
+.t-overline-sm, .t-overline-sm-bold {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  text-transform: uppercase;
+  margin: 0;
+}
+.t-overline-lg, .t-overline-lg-bold { font-size: var(--ts-overline-lg-fs); line-height: var(--ts-overline-lg-lh); letter-spacing: var(--ts-overline-lg-ls); }
+.t-overline-sm, .t-overline-sm-bold { font-size: var(--ts-overline-sm-fs); line-height: var(--ts-overline-sm-lh); letter-spacing: var(--ts-overline-sm-ls); }
+.t-overline-lg-bold, .t-overline-sm-bold { font-weight: var(--font-weight-bold); }
+
+.t-caption {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--ts-caption-fs);
+  line-height: var(--ts-caption-lh);
+  letter-spacing: var(--ts-caption-ls);
+  margin: 0;
+}
+
+.t-legal-medium, .t-legal-bold {
+  font-family: var(--font-family-body);
+  font-size: var(--ts-legal-fs);
+  line-height: var(--ts-legal-lh);
+  letter-spacing: var(--ts-legal-ls);
+  margin: 0;
+}
+.t-legal-medium { font-weight: var(--font-weight-medium); }
+.t-legal-bold   { font-weight: var(--font-weight-bold); }
+
+/* Back-compat: previous names for body, label, overline */
+.t-body { font-family: var(--font-family-body); font-weight: var(--font-weight-regular); font-size: var(--ts-body-sm-fs); line-height: var(--ts-body-sm-lh); letter-spacing: var(--ts-body-sm-ls); color: var(--text-primary); margin: 0; }
+.t-label, label { font-family: var(--font-family-body); font-weight: var(--font-weight-medium); font-size: var(--ts-body-sm-fs); line-height: var(--ts-body-sm-lh); color: var(--text-primary); }
+.t-label-sm { font-family: var(--font-family-body); font-weight: var(--font-weight-medium); font-size: var(--ts-body-xs-fs); line-height: var(--ts-body-xs-lh); color: var(--text-secondary); }
+.t-overline { font-family: var(--font-family-body); font-weight: var(--font-weight-bold); font-size: var(--ts-overline-sm-fs); line-height: var(--ts-overline-sm-lh); letter-spacing: var(--ts-overline-sm-ls); text-transform: uppercase; color: var(--text-secondary); margin: 0; }
+
+/* Code / mono */
+code, kbd, pre, .t-code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+/* Data — used in tables + charts */
+.t-data {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-14);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Links */
+a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* Focus ring — Coalition primary, 2px ring, offset 2 */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+</style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
+  <style>
+/* ---- inlined from app.css ---- */
+html, body { margin: 0; padding: 0; background: #f0eee9; font-family: var(--font-family-body); color: var(--text-primary); }
+#root { width: 100vw; height: 100vh; }
+
+/* ===========================================================
+   App shell shared between all three directions
+   =========================================================== */
+
+.cp-app {
+  --left-nav-w: 56px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: var(--left-nav-w) 1fr;
+  background: var(--surface-default);
+  color: var(--text-primary);
+  font-family: var(--font-family-body);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---- Left nav ---- */
+.cp-nav {
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 0;
+  color: #fff;
+}
+.cp-nav .cp-logo {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 4px;
+}
+.cp-nav .cp-logo svg { width: 26px; height: 26px; }
+.cp-nav .cp-collapse {
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  color: #9aa0a6; cursor: pointer; border-radius: 6px;
+  background: transparent; border: 0; padding: 0;
+}
+.cp-nav .cp-collapse:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.cp-nav .cp-nav-item {
+  width: 40px; height: 40px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: #9aa0a6;
+  cursor: pointer;
+  margin-top: 2px;
+  position: relative;
+}
+.cp-nav .cp-nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.cp-nav .cp-nav-item.active { color: #fff; background: rgba(255,255,255,0.10); }
+.cp-nav .cp-nav-item .material-icons,
+.cp-nav .cp-nav-item .material-icons-outlined { font-size: 22px; }
+.cp-nav-spacer { flex: 1; }
+
+/* ---- Main column ---- */
+.cp-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ---- Top bar ---- */
+.cp-topbar {
+  height: 56px;
+  border-bottom: 1px solid var(--color-grey-30);
+  background: var(--surface-default);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  flex: 0 0 56px;
+}
+.cp-search {
+  flex: 0 0 360px; max-width: 40vw;
+  height: 36px;
+  border: 1px solid var(--color-grey-40);
+  border-radius: 6px;
+  background: var(--surface-default);
+  display: flex; align-items: center; padding: 0 12px;
+  color: var(--color-grey-60);
+  font-size: 14px;
+  gap: 8px;
+}
+.cp-search .material-icons-outlined { font-size: 18px; }
+.cp-topbar-spacer { flex: 1; }
+.cp-create-btn {
+  height: 36px;
+  background: var(--brand-primary);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 14px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 600 14px/1 var(--font-family-body);
+  cursor: pointer;
+}
+.cp-create-btn:hover { background: var(--brand-primary-hover); }
+.cp-create-btn .material-icons { font-size: 18px; }
+.cp-avatar {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--color-orange-100);
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 600 12px/1 var(--font-family-body);
+  letter-spacing: 0.4px;
+}
+
+/* ---- Scrollable page area ---- */
+.cp-page {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 1fr;
+  /* Account body | activity feed (only when feedOpen) */
+  overflow: hidden;
+  min-height: 0;
+}
+.cp-app[data-feed="closed"] .cp-page { grid-template-columns: 1fr; }
+.cp-content {
+  overflow-y: auto;
+  padding: 16px 28px 64px 28px;
+  min-width: 0;
+}
+
+/* Breadcrumb row */
+.cp-breadcrumb {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0 8px 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.cp-breadcrumb a, .cp-breadcrumb .cp-bc-link {
+  color: var(--text-secondary); cursor: pointer; text-decoration: none;
+}
+.cp-breadcrumb a:hover { text-decoration: underline; }
+.cp-breadcrumb .cp-bc-current { color: var(--text-primary); }
+.cp-breadcrumb .cp-bc-actions { display: flex; align-items: center; gap: 8px; color: var(--brand-primary); }
+.cp-breadcrumb .cp-bc-actions .cp-open-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: var(--brand-primary); cursor: pointer;
+  font-size: 13px;
+}
+.cp-breadcrumb .cp-bc-actions .cp-open-link .material-icons { font-size: 16px; }
+.cp-icon-btn {
+  width: 32px; height: 32px;
+  border-radius: 6px; border: 1px solid var(--color-grey-40);
+  background: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-secondary);
+  padding: 0;
+}
+.cp-icon-btn:hover { background: var(--color-grey-10); color: var(--text-primary); }
+.cp-icon-btn.active { background: var(--color-blue-10); color: var(--brand-primary); border-color: var(--color-blue-10); }
+.cp-icon-btn .material-icons-outlined,
+.cp-icon-btn .material-icons { font-size: 18px; }
+
+/* ---- Account header (title + kebab) ---- */
+.cp-account-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: 8px 0 16px 0;
+}
+.cp-account-head h1 {
+  font-family: var(--font-family-body);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+.cp-kebab {
+  width: 36px; height: 36px;
+  border: 1px solid var(--color-grey-40);
+  background: #fff;
+  border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; padding: 0; color: var(--text-secondary);
+  position: relative;
+}
+.cp-kebab:hover { background: var(--color-grey-10); color: var(--text-primary); }
+.cp-kebab .material-icons { font-size: 20px; }
+
+/* ---- Generic card ---- */
+.cp-card {
+  background: #fff;
+  border: 1px solid var(--color-grey-30);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.cp-card-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px;
+}
+.cp-card-title {
+  font: 700 18px/24px var(--font-family-body);
+  color: var(--text-primary);
+}
+
+/* Definition list (Agency / Address …) */
+.cp-dl {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  row-gap: 8px; column-gap: 12px;
+  font-size: 14px;
+}
+.cp-dl dt { color: var(--text-primary); }
+.cp-dl dd { margin: 0; color: var(--text-primary); }
+.cp-link { color: var(--brand-primary); cursor: pointer; }
+.cp-link:hover { text-decoration: underline; }
+.cp-uuid { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; color: var(--text-primary); display: inline-flex; gap: 8px; align-items: center; }
+.cp-domain-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 22px; padding: 0 8px;
+  border-radius: 4px;
+  background: var(--color-blue-5); color: var(--brand-primary);
+  font-size: 13px; font-weight: 500;
+}
+.cp-more-toggle {
+  font-size: 14px; color: var(--text-primary); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 8px;
+}
+.cp-more-toggle .material-icons { font-size: 16px; }
+.cp-edit-inline {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: var(--brand-primary); cursor: pointer; font-size: 14px; font-weight: 500;
+}
+.cp-edit-inline .material-icons-outlined { font-size: 14px; }
+
+/* Tabs */
+.cp-tabs {
+  display: flex; gap: 24px;
+  border-bottom: 1px solid var(--color-grey-30);
+  margin: 8px 0 16px 0;
+}
+.cp-tab {
+  padding: 10px 0; cursor: pointer;
+  font-size: 16px; font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.cp-tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
+.cp-tab .cp-pill { font-size: 11px; padding: 2px 8px; background: var(--color-grey-20); color: var(--text-secondary); border-radius: 999px; font-weight: 600; letter-spacing: 0.2px; }
+
+/* Cyber summary specific */
+.cp-cyber-head { justify-content: space-between; }
+.cp-quote-pill {
+  display: inline-flex; align-items: center; height: 22px;
+  padding: 0 8px; border-radius: 999px; font: 600 12px/1 var(--font-family-body);
+  background: var(--color-green-10); color: var(--color-green-140);
+}
+.cp-summary-tail { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; }
+.cp-toggle {
+  width: 32px; height: 18px; border-radius: 999px;
+  background: var(--color-green-100); position: relative; flex: 0 0 32px;
+}
+.cp-toggle::after {
+  content: ''; width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; position: absolute; right: 2px; top: 2px;
+}
+
+/* Table-ish blocks */
+.cp-subcard {
+  background: #fff;
+  border: 1px solid var(--color-grey-30);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+}
+.cp-subcard-title {
+  font: 700 14px/18px var(--font-family-body);
+  padding-bottom: 8px;
+}
+.cp-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px;
+}
+.cp-table thead th {
+  text-align: left; padding: 8px 8px 8px 0;
+  color: var(--text-secondary);
+  font-weight: 600; font-size: 12px;
+  border-bottom: 1px solid var(--color-grey-30);
+}
+.cp-table tbody td {
+  padding: 10px 8px 10px 0;
+  border-bottom: 1px solid var(--color-grey-30);
+  vertical-align: top;
+}
+.cp-table tbody tr:last-child td { border-bottom: 0; }
+.cp-tr-selectable { cursor: pointer; }
+.cp-tr-selectable:hover { background: var(--color-grey-10); }
+.cp-tr-selected { background: var(--color-blue-5); }
+.cp-tr-selected td:first-child { box-shadow: inset 2px 0 0 var(--brand-primary); }
+
+/* Status badges */
+.cp-badge {
+  display: inline-flex; align-items: center; height: 22px;
+  padding: 0 8px; border-radius: 4px; font: 600 12px/1 var(--font-family-body);
+}
+.cp-badge--active   { background: var(--color-green-10); color: var(--color-green-140); }
+.cp-badge--policy   { background: var(--color-blue-10);  color: var(--color-blue-140); }
+.cp-badge--expired  { background: var(--color-grey-30);  color: var(--text-secondary); }
+.cp-badge--open     { background: var(--color-red-10);   color: var(--color-red-140); }
+.cp-badge--closed   { background: var(--color-grey-30);  color: var(--text-secondary); }
+.cp-badge--quoted   { background: var(--color-green-10); color: var(--color-green-140); }
+.cp-badge--pending  { background: var(--color-orange-10); color: var(--color-orange-140); }
+.cp-badge--completed{ background: var(--color-green-10); color: var(--color-green-140); }
+
+/* Checkbox */
+.cp-chk {
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--color-grey-50); border-radius: 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  flex: 0 0 16px;
+}
+.cp-chk.checked { background: var(--brand-primary); border-color: var(--brand-primary); }
+.cp-chk.checked::after {
+  content: ''; width: 8px; height: 4px;
+  border: 2px solid #fff; border-top: 0; border-right: 0;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+.cp-chk.indet { background: var(--brand-primary); border-color: var(--brand-primary); }
+.cp-chk.indet::after { content: ''; width: 8px; height: 2px; background: #fff; }
+
+/* Floating bulk action bar — dark pill at bottom of artboard */
+.cp-bulkbar-float {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 6px 6px 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.28), 0 4px 12px rgba(0,0,0,0.18);
+  font-family: var(--font-family-body);
+  animation: bulkbar-float-in 0.18s cubic-bezier(.4,0,.2,1);
+}
+@keyframes bulkbar-float-in {
+  from { opacity: 0; transform: translate(-50%, 6px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+.cp-bulkbar-count-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: #fff;
+  padding-right: 4px;
+}
+.cp-bulkbar-count-chip strong { font-weight: 600; }
+.cp-bulkbar-clear-x {
+  width: 22px; height: 22px; border-radius: 6px;
+  border: 0; background: transparent;
+  color: rgba(255,255,255,0.7); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0; font-family: inherit;
+}
+.cp-bulkbar-clear-x:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.cp-bulkbar-sep {
+  width: 1px; align-self: stretch;
+  margin: 6px 4px;
+  background: rgba(255,255,255,0.15);
+}
+.cp-bulkbar-action {
+  border: 0; background: transparent;
+  color: rgba(255,255,255,0.92);
+  height: 32px; padding: 0 12px;
+  border-radius: 8px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 500 13px/1 var(--font-family-body);
+  cursor: pointer;
+}
+.cp-bulkbar-action:hover { background: rgba(255,255,255,0.10); color: #fff; }
+.cp-bulkbar-action:disabled,
+.cp-bulkbar-action[disabled] {
+  color: rgba(255,255,255,0.35);
+  cursor: not-allowed;
+}
+.cp-bulkbar-action:disabled:hover,
+.cp-bulkbar-action[disabled]:hover { background: transparent; color: rgba(255,255,255,0.35); }
+.cp-bulkbar-action .material-icons-outlined,
+.cp-bulkbar-action .material-icons { color: inherit; }
+.cp-bulkbar-kebab { padding: 0 8px; }
+.cp-bulkbar-overflow {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: #fff;
+  border: 1px solid var(--color-grey-30);
+  border-radius: 8px;
+  box-shadow: var(--elevation-4);
+  padding: 4px;
+  z-index: 31;
+  color: var(--text-primary);
+}
+.cp-bulkbar-overflow .cp-menu-item { border-radius: 6px; }
+
+/* Legacy inline bulk bar (kept for any callers that still reference it) */
+.cp-bulkbar {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--color-blue-5);
+  border: 1px solid var(--color-blue-10);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  animation: bulkbar-in 0.18s cubic-bezier(.4,0,.2,1);
+}
+@keyframes bulkbar-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cp-bulkbar-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.cp-bulkbar-count { font-size: 13px; color: var(--color-blue-140); }
+.cp-bulkbar-count strong { color: var(--color-blue-140); }
+.cp-bulkbar-clear {
+  font-size: 12px; color: var(--brand-primary); cursor: pointer; font-weight: 500;
+  padding: 2px 6px; border-radius: 4px;
+}
+.cp-bulkbar-clear:hover { background: var(--color-blue-10); }
+.cp-bulkbar-actions { display: flex; gap: 8px; }
+.cp-bulkbar .tx-btn { height: 30px; font-size: 13px; }
+.cp-bulkbar .tx-btn--secondary { background: #fff; }
+
+/* Activity feed */
+.cp-feed {
+  border-left: 1px solid var(--color-grey-30);
+  padding: 16px 20px;
+  overflow-y: auto;
+  background: #fff;
+  min-width: 0;
+}
+.cp-feed-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.cp-feed-head h2 { font: 700 18px/24px var(--font-family-body); margin: 0; }
+.cp-filter-row { display: flex; gap: 8px; margin-bottom: 16px; }
+.cp-filter {
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 28px; padding: 0 10px; font-size: 12px; font-weight: 500;
+  background: #fff; border: 1px solid var(--color-grey-40); border-radius: 6px;
+  color: var(--text-secondary);
+}
+.cp-filter .material-icons-outlined { font-size: 14px; }
+.cp-feed-item { display: flex; gap: 10px; margin-bottom: 16px; }
+.cp-feed-ico {
+  width: 28px; height: 28px; border-radius: 999px;
+  background: var(--color-blue-10); color: var(--brand-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 28px; margin-top: 2px;
+}
+.cp-feed-ico .material-icons-outlined,
+.cp-feed-ico .material-icons { font-size: 16px; }
+.cp-feed-body { flex: 1; min-width: 0; font-size: 13px; }
+.cp-feed-title { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.cp-feed-title strong { font-weight: 600; }
+.cp-feed-time { color: var(--text-secondary); font-size: 12px; flex: 0 0 auto; }
+.cp-feed-card {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: var(--color-grey-10);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 18px;
+}
+.cp-feed-card .row { display: flex; gap: 4px; }
+.cp-feed-card .row dt { color: var(--text-secondary); flex: 0 0 auto; }
+.cp-feed-card .row dd { margin: 0; }
+
+/* Kebab menu */
+.cp-menu {
+  position: absolute;
+  background: #fff;
+  border: 1px solid var(--color-grey-30);
+  border-radius: 8px;
+  box-shadow: var(--elevation-3);
+  padding: 6px;
+  min-width: 220px;
+  z-index: 100;
+}
+.cp-menu-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.cp-menu-item:hover { background: var(--color-blue-5); }
+.cp-menu-item .material-icons-outlined,
+.cp-menu-item .material-icons { font-size: 18px; color: var(--text-secondary); }
+.cp-menu-item:hover .material-icons-outlined,
+.cp-menu-item:hover .material-icons { color: var(--brand-primary); }
+.cp-menu-divider { height: 1px; background: var(--color-grey-30); margin: 4px 0; }
+.cp-menu-section {
+  font: 600 11px/14px var(--font-family-body);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  padding: 8px 10px 4px;
+}
+
+/* ===========================================================
+   Shared transfer surface primitives (used by all 3 directions)
+   =========================================================== */
+.tx-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 50;
+}
+.tx-input {
+  width: 100%; height: 36px;
+  box-sizing: border-box;
+  border: 1px solid var(--color-grey-40);
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 12px;
+  font-size: 14px; font-family: inherit;
+  color: var(--text-primary);
+  outline: none;
+}
+.tx-input:focus { border-color: var(--brand-primary); box-shadow: 0 0 0 3px var(--alpha-blue-15); }
+.tx-input::placeholder { color: var(--color-grey-60); }
+.tx-input-shell {
+  position: relative;
+}
+.tx-input-shell .material-icons-outlined {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; color: var(--color-grey-60);
+}
+.tx-input.with-icon { padding-left: 34px; }
+.tx-label {
+  font: 600 13px/16px var(--font-family-body);
+  display: block; margin-bottom: 6px; color: var(--text-primary);
+}
+.tx-help {
+  font-size: 12px; color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.tx-btn {
+  height: 36px;
+  border-radius: 6px;
+  padding: 0 14px;
+  font: 600 14px/1 var(--font-family-body);
+  cursor: pointer;
+  border: 1px solid transparent;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.tx-btn--primary { background: var(--brand-primary); color: #fff; }
+.tx-btn--primary:hover { background: var(--brand-primary-hover); }
+.tx-btn--primary:disabled { background: var(--color-grey-40); cursor: not-allowed; }
+.tx-btn--secondary { background: #fff; color: var(--text-primary); border-color: var(--color-grey-40); }
+.tx-btn--secondary:hover { background: var(--color-grey-10); }
+.tx-btn--ghost { background: transparent; color: var(--brand-primary); }
+.tx-btn--ghost:hover { background: var(--color-blue-5); }
+.tx-btn .material-icons-outlined,
+.tx-btn .material-icons { font-size: 18px; }
+
+.tx-row-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-grey-30);
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color .12s, background .12s;
+}
+.tx-row-card:hover { background: var(--color-grey-10); }
+.tx-row-card.selected { border-color: var(--brand-primary); background: var(--color-blue-5); }
+.tx-row-avatar {
+  width: 32px; height: 32px; border-radius: 999px;
+  background: var(--color-blue-10); color: var(--brand-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 600 12px/1 var(--font-family-body);
+  flex: 0 0 32px;
+}
+.tx-row-meta { flex: 1; min-width: 0; font-size: 13px; }
+.tx-row-meta .name { font-weight: 600; font-size: 14px; color: var(--text-primary); }
+.tx-row-meta .sub { color: var(--text-secondary); font-size: 12px; margin-top: 2px; }
+
+/* Stepper */
+.tx-stepper { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; }
+.tx-step {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--text-secondary);
+}
+.tx-step .dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--color-grey-30); color: var(--text-secondary);
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 600 11px/1 var(--font-family-body);
+}
+.tx-step.active { color: var(--text-primary); }
+.tx-step.active .dot { background: var(--brand-primary); color: #fff; }
+.tx-step.done .dot { background: var(--color-green-100); color: #fff; }
+.tx-step.done .dot::before { content: '✓'; font-size: 12px; }
+.tx-step.done .dot span { display: none; }
+.tx-step-line { width: 24px; height: 1px; background: var(--color-grey-30); }
+
+</style>
+
+  <style>
+    @keyframes ma-spin { to { transform: rotate(360deg); } }
+    .ma-spinner {
+      width: 48px; height: 48px; border-radius: 999px;
+      border: 4px solid var(--color-grey-30);
+      border-top-color: var(--brand-primary);
+      animation: ma-spin .8s linear infinite;
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div style="font:13px/1.5 'Public Sans',system-ui,sans-serif;background:#111;color:#fff;padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <strong style="font-weight:600">Manage account</strong>
+    <span style="opacity:.72">Interactive prototype &middot; Shamraiz Gul &middot; built with AI-assisted tooling &middot; shared with Coalition's permission</span>
+  </div>
+  <div id="root"></div>
+
+  <script type="text/babel" data-source="primitives.jsx">
+// Shared primitives for the account page + transfer surfaces.
+// All exports go to window so other Babel scripts can use them.
+
+const Icon = ({ name, kind = 'outlined', size, style = {}, className = '' }) => {
+  const cls = kind === 'filled' ? 'material-icons' : 'material-icons-outlined';
+  return (
+    <span className={cls + ' ' + className} style={{ fontSize: size, ...style }}>{name}</span>);
+
+};
+
+const Avatar = ({ children, color = 'orange', size = 32 }) => {
+  const colors = {
+    orange: { bg: 'var(--color-orange-100)', fg: '#fff' },
+    blue: { bg: 'var(--color-blue-10)', fg: 'var(--brand-primary)' },
+    grey: { bg: 'var(--color-grey-30)', fg: 'var(--text-secondary)' },
+    green: { bg: 'var(--color-green-10)', fg: 'var(--color-green-140)' },
+    purple: { bg: 'var(--color-purple-10)', fg: 'var(--color-purple-140)' }
+  };
+  const c = colors[color] || colors.orange;
+  return (
+    <span style={{
+      width: size, height: size, borderRadius: 999,
+      background: c.bg, color: c.fg,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      fontWeight: 600, fontSize: size <= 24 ? 10 : 12, flex: `0 0 ${size}px`,
+      letterSpacing: '0.4px'
+    }}>{children}</span>);
+
+};
+
+const Checkbox = ({ checked, indet, onChange }) =>
+<span
+  className={'cp-chk ' + (indet ? 'indet' : checked ? 'checked' : '')}
+  onClick={(e) => {e.stopPropagation();onChange && onChange(!checked);}} />;
+
+
+
+// Click-outside helper hook
+function useOutsideClick(ref, handler) {
+  React.useEffect(() => {
+    const onDown = (e) => {
+      if (!ref.current) return;
+      if (!ref.current.contains(e.target)) handler(e);
+    };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [handler]);
+}
+
+// Tiny toast surface
+const ToastCtx = React.createContext(null);
+function ToastHost({ children }) {
+  const [toast, setToast] = React.useState(null);
+  const show = React.useCallback((msg, opts = {}) => {
+    setToast({ msg, ...opts });
+    setTimeout(() => setToast(null), opts.duration || 3500);
+  }, []);
+  return (
+    <ToastCtx.Provider value={show}>
+      {children}
+      {toast &&
+      <div style={{
+        position: 'absolute',
+        bottom: 24, left: '50%', transform: 'translateX(-50%)',
+        background: '#1a1a1a', color: '#fff',
+        padding: '10px 16px', borderRadius: 8,
+        boxShadow: 'var(--elevation-3)',
+        fontSize: 13, fontWeight: 500,
+        display: 'flex', alignItems: 'center', gap: 10,
+        zIndex: 200,
+        maxWidth: 480
+      }}>
+          <Icon name="check_circle" kind="filled" size={18} style={{ color: 'var(--color-green-100)' }} />
+          <span>{toast.msg}</span>
+          {toast.action &&
+        <button onClick={toast.action.onClick} style={{
+          background: 'transparent', color: '#80a9e7', border: 0, cursor: 'pointer',
+          fontWeight: 600, fontSize: 13, padding: 0, marginLeft: 8
+        }}>{toast.action.label}</button>
+        }
+        </div>
+      }
+    </ToastCtx.Provider>);
+
+}
+function useToast() {return React.useContext(ToastCtx);}
+
+// ──────────────────────────────────────────────────────────────
+// Shared datasets (accounts/agencies/brokers) + recents
+// ──────────────────────────────────────────────────────────────
+const ACCOUNTS = [
+{ id: 'acc-zeroday', name: 'ZeroDay Tech Solutions LLC', domain: 'zerodaytech.com', uuid: 'c5dac9a2-4b82-4071-b333-94bc3146b55b', broker: 'Steven Stevens', agency: 'Blue & Blue', rev: '$1M', state: 'RI', activeQuotes: 5, current: true },
+{ id: 'acc-zeroday-hold', name: 'ZeroDay Holdings Inc.', domain: 'zerodaytech.com', uuid: '8a91...3f02', broker: 'Steven Stevens', agency: 'Blue & Blue', rev: '$12M', state: 'RI', activeQuotes: 2 },
+{ id: 'acc-nile', name: 'Nile Global Technology', domain: 'nileglobal.com', uuid: '4b22...7c14', broker: 'James Wadsworth', agency: 'Everest Insurance', rev: '$48M', state: 'NY', activeQuotes: 1 },
+{ id: 'acc-helio', name: 'Helio Robotics Corp.', domain: 'heliorobotics.co', uuid: 'a1c8...9923', broker: 'Mara Pinto', agency: 'Amwins Dallas', rev: '$3.2M', state: 'TX', activeQuotes: 3 },
+{ id: 'acc-monarch', name: 'Monarch Health Systems', domain: 'monarchhs.com', uuid: '70de...88ab', broker: 'Lacy Ramirez', agency: 'Risk Strategies', rev: '$94M', state: 'MA', activeQuotes: 0 },
+{ id: 'acc-blueocean', name: 'BlueOcean Logistics Ltd.', domain: 'blueoceanlog.com', uuid: '11f2...4abc', broker: 'Sofia Park', agency: 'Amwins North', rev: '$22M', state: 'NJ', activeQuotes: 4 },
+{ id: 'acc-stratos', name: 'Stratos Manufacturing Co.', domain: 'stratos-mfg.com', uuid: 'ee99...1c70', broker: 'Darnell Kim', agency: 'TrueNorth Companies', rev: '$56M', state: 'IA', activeQuotes: 1 },
+{ id: 'acc-finch', name: 'Finch & Marlowe Group', domain: 'finchmarlowe.com', uuid: 'bd33...502e', broker: 'Henry Okafor', agency: 'Amwins Dallas', rev: '$8.7M', state: 'TX', activeQuotes: 2 },
+{ id: 'acc-orion', name: 'Orion Studios Inc.', domain: 'orionstudios.tv', uuid: '02bb...4488', broker: 'Mara Pinto', agency: 'Amwins Dallas', rev: '$15M', state: 'CA', activeQuotes: 1 }];
+
+
+const RECENT_ACCOUNT_IDS = ['acc-zeroday-hold', 'acc-nile', 'acc-helio'];
+const SUGGESTED_BROKER_IDS = ['mara-pinto', 'webster-nash', 'lacy-ramirez'];
+
+Object.assign(window, { Icon, Avatar, Checkbox, useOutsideClick, ToastHost, useToast, ACCOUNTS, RECENT_ACCOUNT_IDS, SUGGESTED_BROKER_IDS });
+
+// ──────────────────────────────────────────────────────────────
+// AccountSearchField — picker with default "Recent / Suggested"
+// ──────────────────────────────────────────────────────────────
+function AccountSearchField({ value, onChange, autoFocus, placeholder = 'Search by name, domain, or UUID…', currentAccountId = 'acc-zeroday', exclude = [] }) {
+  const [q, setQ] = React.useState('');
+  const [focused, setFocused] = React.useState(false);
+  const norm = (s) => (s || '').toLowerCase();
+  const isMatch = (a) => {
+    const t = norm(q);
+    if (!t) return true;
+    return (
+      norm(a.name).includes(t) ||
+      norm(a.domain).includes(t) ||
+      norm(a.uuid).includes(t) ||
+      norm(a.broker).includes(t) ||
+      norm(a.agency).includes(t));
+
+  };
+  const candidates = ACCOUNTS.
+  filter((a) => a.id !== currentAccountId && !exclude.includes(a.id)).
+  filter(isMatch);
+
+  // Detect probable typo (when no results AND query is non-empty)
+  const noResults = q && candidates.length === 0;
+  const selected = value && ACCOUNTS.find((a) => a.id === value);
+
+  // Sort: query→prefix matches first; default → put recents on top
+  const list = (() => {
+    if (!q) {
+      const recents = RECENT_ACCOUNT_IDS.
+      filter((id) => id !== currentAccountId && !exclude.includes(id)).
+      map((id) => ACCOUNTS.find((a) => a.id === id)).
+      filter(Boolean);
+      const rest = candidates.filter((a) => !RECENT_ACCOUNT_IDS.includes(a.id));
+      return [...recents, ...rest];
+    }
+    return candidates.sort((a, b) => {
+      const at = norm(a.name).startsWith(norm(q)) ? 0 : 1;
+      const bt = norm(b.name).startsWith(norm(q)) ? 0 : 1;
+      return at - bt;
+    });
+  })();
+
+  return (
+    <div style={{ position: 'relative' }}>
+      {!selected ?
+      <>
+          <div className="tx-input-shell">
+            <Icon name="search" />
+            <input
+            autoFocus={autoFocus}
+            className="tx-input with-icon"
+            placeholder={placeholder}
+            value={q}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setTimeout(() => setFocused(false), 150)}
+            onChange={(e) => setQ(e.target.value)} />
+          
+            {q &&
+          <span style={{
+            position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+            color: 'var(--text-secondary)', cursor: 'pointer',
+            display: 'inline-flex'
+          }} onClick={() => setQ('')}>
+                <Icon name="close" size={16} />
+              </span>
+          }
+          </div>
+          {q &&
+        <div style={{
+          marginTop: 8,
+          border: '1px solid var(--color-grey-30)',
+          borderRadius: 8,
+          background: '#fff',
+          maxHeight: 300,
+          overflowY: 'auto'
+        }}>
+              {!q &&
+          <div style={{
+            padding: '8px 12px',
+            fontSize: 11, fontWeight: 600,
+            color: 'var(--text-secondary)',
+            textTransform: 'uppercase', letterSpacing: 0.5,
+            borderBottom: '1px solid var(--color-grey-30)',
+            display: 'flex', alignItems: 'center', gap: 6
+          }}>
+                  <Icon name="history" size={14} />
+                  Recent accounts
+                </div>
+          }
+              {noResults &&
+          <div style={{ padding: '24px 16px', textAlign: 'center' }}>
+                  <Icon name="search_off" size={28} style={{ color: 'var(--color-grey-50)' }} />
+                  <div style={{ fontSize: 13, color: 'var(--text-primary)', marginTop: 6, fontWeight: 500 }}>
+                    No accounts match "{q}"
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>
+                    Try a domain or UUID, or <span className="cp-link">create a new account →</span>
+                  </div>
+                </div>
+          }
+              {list.slice(0, 8).map((a) =>
+          <AccountResultRow
+            key={a.id}
+            account={a}
+            q={q}
+            onClick={() => {onChange(a.id);setQ('');}} />
+
+          )}
+            </div>
+        }
+        </> :
+
+      <SelectedAccountChip account={selected} onClear={() => onChange(null)} />
+      }
+    </div>);
+
+}
+
+function highlight(text, q) {
+  if (!q) return text;
+  const i = (text || '').toLowerCase().indexOf(q.toLowerCase());
+  if (i < 0) return text;
+  return (
+    <>
+      {text.slice(0, i)}
+      <mark style={{ background: 'var(--color-yellow-10)', color: 'inherit', padding: '0 1px', borderRadius: 2 }}>
+        {text.slice(i, i + q.length)}
+      </mark>
+      {text.slice(i + q.length)}
+    </>);
+
+}
+
+function AccountResultRow({ account, q, onClick, dense }) {
+  return (
+    <div
+      onClick={onClick}
+      onMouseDown={(e) => e.preventDefault()}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '32px 1fr auto',
+        gap: 10, padding: dense ? '8px 10px' : '10px 12px',
+        cursor: 'pointer',
+        borderBottom: '1px solid var(--color-grey-30)',
+        alignItems: 'center'
+      }}
+      onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-blue-5)'}
+      onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}>
+      
+      <span style={{
+        width: 32, height: 32, borderRadius: 6,
+        background: 'var(--color-grey-10)',
+        color: 'var(--text-secondary)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        flex: '0 0 32px'
+      }}>
+        <Icon name="business" size={18} />
+      </span>
+      <div style={{ minWidth: 0 }}>
+        <div style={{ fontWeight: 500, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text-primary)' }}>
+          {highlight(account.name, q)}
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'flex', gap: 8, alignItems: 'center', marginTop: 2 }}>
+          <span>{highlight(account.domain, q)}</span>
+          <span style={{ color: 'var(--color-grey-50)' }}>·</span>
+          <span>{account.broker}</span>
+          <span style={{ color: 'var(--color-grey-50)' }}>·</span>
+          <span>{account.agency}</span>
+        </div>
+      </div>
+      <div style={{ textAlign: 'right', fontSize: 11, color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+        <div>{account.rev} · {account.state}</div>
+        {account.activeQuotes > 0 &&
+        <div style={{ color: 'var(--color-green-140)', fontWeight: 500, marginTop: 2 }}>
+            {account.activeQuotes} active quote{account.activeQuotes > 1 ? 's' : ''}
+          </div>
+        }
+      </div>
+    </div>);
+
+}
+
+function SelectedAccountChip({ account, onClear, compact }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 10,
+      padding: compact ? '8px 10px' : '12px 14px',
+      border: '1px solid var(--brand-primary)',
+      background: 'var(--color-blue-5)',
+      borderRadius: 8
+    }}>
+      <span style={{
+        width: compact ? 28 : 36, height: compact ? 28 : 36, borderRadius: 6,
+        background: '#fff', color: 'var(--brand-primary)',
+        border: '1px solid var(--color-blue-10)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        flex: '0 0 auto'
+      }}>
+        <Icon name="business" />
+      </span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {account.name}
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 2 }}>
+          <span>{account.domain}</span>
+          <span style={{ color: 'var(--color-grey-50)' }}>·</span>
+          <span>{account.broker} @ {account.agency}</span>
+        </div>
+      </div>
+      {onClear &&
+      <button onClick={onClear} style={{
+        background: 'transparent', border: 0, padding: 4, cursor: 'pointer',
+        color: 'var(--text-secondary)'
+      }}>
+          <Icon name="close" size={16} />
+        </button>
+      }
+    </div>);
+
+}
+
+Object.assign(window, { AccountSearchField, AccountResultRow, SelectedAccountChip, highlight });
+
+// ──────────────────────────────────────────────────────────────
+// BrokerSearchField — unified broker search that also matches agency
+// name. Picking a broker pins their agency automatically.
+// Optional agency-filter chip lets the user narrow by agency.
+// ──────────────────────────────────────────────────────────────
+function BrokerSearchField({ value, onChange, autoFocus, placeholder = 'Search broker or agency…', exclude = [] }) {
+  const [q, setQ] = React.useState('');
+  const [focused, setFocused] = React.useState(false);
+  const [agencyFilter, setAgencyFilter] = React.useState(null); // pinned agency id, optional
+
+  const norm = (s) => (s || '').toLowerCase();
+  const agencyName = (id) => window.AGENCIES?.find((a) => a.id === id)?.name;
+  const matches = (b) => {
+    const t = norm(q);
+    if (agencyFilter && b.agency !== agencyName(agencyFilter)) return false;
+    if (!t) return true;
+    return norm(b.name).includes(t) || norm(b.agency).includes(t);
+  };
+  const brokers = (window.BROKERS || []).filter((b) => !exclude.includes(b.id)).filter(matches);
+
+  // If the query matches an agency name exactly (or strongly), surface a "filter by this agency" affordance
+  const agencyMatch = q && (window.AGENCIES || []).find((a) => norm(a.name).startsWith(norm(q)));
+
+  const noResults = q && brokers.length === 0;
+  const selected = value && (window.BROKERS || []).find((b) => b.id === value);
+
+  // Sort: prefix-match brokers first; default → suggested
+  const list = (() => {
+    if (!q) {
+      const suggested = (window.SUGGESTED_BROKER_IDS || []).
+      map((id) => (window.BROKERS || []).find((b) => b.id === id)).
+      filter((b) => b && !exclude.includes(b.id) && (!agencyFilter || b.agency === agencyName(agencyFilter)));
+      const rest = brokers.filter((b) => !(window.SUGGESTED_BROKER_IDS || []).includes(b.id));
+      return [...suggested, ...rest];
+    }
+    return brokers.sort((a, b) => {
+      const ap = norm(a.name).startsWith(norm(q)) ? 0 : 1;
+      const bp = norm(b.name).startsWith(norm(q)) ? 0 : 1;
+      return ap - bp;
+    });
+  })();
+
+  return (
+    <div style={{ position: 'relative' }}>
+      {!selected ?
+      <>
+          {/* Pinned agency filter chip */}
+          {agencyFilter &&
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          padding: '4px 8px',
+          background: 'var(--color-blue-10)', color: 'var(--brand-primary)',
+          borderRadius: 999,
+          fontSize: 12, fontWeight: 500,
+          marginBottom: 6
+        }}>
+              <Icon name="apartment" size={12} />
+              {agencyName(agencyFilter)}
+              <span onClick={() => setAgencyFilter(null)} style={{ cursor: 'pointer', display: 'inline-flex' }}>
+                <Icon name="close" size={12} />
+              </span>
+            </div>
+        }
+          <div className="tx-input-shell">
+            <Icon name="search" />
+            <input
+            autoFocus={autoFocus}
+            className="tx-input with-icon"
+            placeholder={placeholder}
+            value={q}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setTimeout(() => setFocused(false), 180)}
+            onChange={(e) => setQ(e.target.value)} />
+          
+            {q &&
+          <span style={{
+            position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+            color: 'var(--text-secondary)', cursor: 'pointer',
+            display: 'inline-flex'
+          }} onMouseDown={(e) => {e.preventDefault();setQ('');}}>
+                <Icon name="close" size={16} />
+              </span>
+          }
+          </div>
+
+          {q &&
+        <div style={{
+          marginTop: 8,
+          border: '1px solid var(--color-grey-30)',
+          borderRadius: 8,
+          background: '#fff',
+          maxHeight: 280,
+          overflowY: 'auto'
+        }}>
+              {/* Agency-as-filter affordance when query matches an agency */}
+              {agencyMatch && !agencyFilter &&
+          <div
+            onMouseDown={(e) => {e.preventDefault();setAgencyFilter(agencyMatch.id);setQ('');}}
+            style={{
+              padding: '8px 12px',
+              background: 'var(--color-blue-5)',
+              borderBottom: '1px solid var(--color-grey-30)',
+              cursor: 'pointer',
+              display: 'flex', alignItems: 'center', gap: 8,
+              fontSize: 13,
+              color: 'var(--brand-primary)'
+            }}>
+            
+                  <Icon name="apartment" size={16} />
+                  <span>Filter by agency: <strong>{agencyMatch.name}</strong></span>
+                  <span style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--text-secondary)' }}>↵</span>
+                </div>
+          }
+
+              {!q &&
+          <div style={{
+            padding: '8px 12px',
+            fontSize: 11, fontWeight: 600,
+            color: 'var(--text-secondary)',
+            textTransform: 'uppercase', letterSpacing: 0.5,
+            borderBottom: '1px solid var(--color-grey-30)',
+            display: 'flex', alignItems: 'center', gap: 6
+          }}>
+                  <Icon name="history" size={14} />
+                  {agencyFilter ? agencyName(agencyFilter) + ' brokers' : 'Suggested brokers'}
+                </div>
+          }
+
+              {noResults &&
+          <div style={{ padding: '24px 16px', textAlign: 'center' }}>
+                  <Icon name="search_off" size={28} style={{ color: 'var(--color-grey-50)' }} />
+                  <div style={{ fontSize: 13, color: 'var(--text-primary)', marginTop: 6, fontWeight: 500 }}>
+                    No brokers match "{q}"
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>
+                    {agencyFilter ? <>Try removing the agency filter, or </> : null}
+                    type an agency name to filter
+                  </div>
+                </div>
+          }
+
+              {list.slice(0, 8).map((b) =>
+          <BrokerResultRow
+            key={b.id}
+            broker={b}
+            q={q}
+            onClick={() => {onChange(b.id);setQ('');}} />
+
+          )}
+            </div>
+        }
+        </> :
+
+      <SelectedBrokerChip broker={selected} onClear={() => onChange(null)} />
+      }
+    </div>);
+
+}
+
+function BrokerResultRow({ broker, q, onClick }) {
+  return (
+    <div
+      onClick={onClick}
+      onMouseDown={(e) => e.preventDefault()}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '32px 1fr auto',
+        gap: 10, padding: '10px 12px',
+        cursor: 'pointer',
+        borderBottom: '1px solid var(--color-grey-30)',
+        alignItems: 'center'
+      }}
+      onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-blue-5)'}
+      onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}>
+      
+      <Avatar color="grey">{broker.initials}</Avatar>
+      <div style={{ minWidth: 0 }}>
+        <div style={{ fontWeight: 500, fontSize: 14, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {highlight(broker.name, q)}
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
+          <Icon name="apartment" size={11} />
+          <span>{highlight(broker.agency, q)}</span>
+        </div>
+      </div>
+      <Icon name="east" kind="filled" size={16} style={{ color: 'var(--color-grey-50)' }} />
+    </div>);
+
+}
+
+function SelectedBrokerChip({ broker, onClear, compact }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 10,
+      padding: compact ? '8px 10px' : '12px 14px',
+      border: '1px solid var(--brand-primary)',
+      background: 'var(--color-blue-5)',
+      borderRadius: 8
+    }}>
+      <Avatar color="blue" size={compact ? 28 : 36}>{broker.initials}</Avatar>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {broker.name}
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'flex', gap: 6, alignItems: 'center', marginTop: 2 }}>
+          <Icon name="apartment" size={11} />
+          <span>{broker.agency}</span>
+        </div>
+      </div>
+      {onClear &&
+      <button onClick={onClear} style={{
+        background: 'transparent', border: 0, padding: 4, cursor: 'pointer',
+        color: 'var(--text-secondary)'
+      }}>
+          <Icon name="close" size={16} />
+        </button>
+      }
+    </div>);
+
+}
+
+Object.assign(window, { BrokerSearchField, BrokerResultRow, SelectedBrokerChip });
+</script>
+  <script type="text/babel" data-source="manage-account-modal.jsx">
+// manage-account-modal.jsx — single interactive "Manage account" modal.
+// Two tabs (Change ownership / Move items), real state, both adaptive flows.
+// Reuses Icon/Avatar/Checkbox/BrokerSearchField/SelectedBrokerChip/SelectedAccountChip
+// /ACCOUNTS/highlight from primitives.jsx.
+
+const { Icon, Avatar, Checkbox, BrokerSearchField, SelectedBrokerChip, SelectedAccountChip, ACCOUNTS, highlight, useToast } = window;
+
+// ── BROKERS / AGENCIES (consumed by BrokerSearchField via window) ──
+const BROKERS = [
+{ id: 'webster-nash', name: 'Webster Nash', agency: 'Everest Insurance', initials: 'WN' },
+{ id: 'mara-pinto', name: 'Mara Pinto', agency: 'Amwins Dallas', initials: 'MP' },
+{ id: 'henry-okafor', name: 'Henry Okafor', agency: 'Amwins Dallas', initials: 'HO' },
+{ id: 'lacy-ramirez', name: 'Lacy Ramirez', agency: 'Risk Strategies', initials: 'LR' },
+{ id: 'darnell-kim', name: 'Darnell Kim', agency: 'TrueNorth Companies', initials: 'DK' },
+{ id: 'sofia-park', name: 'Sofia Park', agency: 'Amwins North', initials: 'SP' }];
+
+const AGENCIES = [
+{ id: 'everest', name: 'Everest Insurance', desc: 'Wholesale · NY', initials: 'EI' },
+{ id: 'amwins-dallas', name: 'Amwins Dallas', desc: 'Wholesale · TX', initials: 'AD' },
+{ id: 'amwins-north', name: 'Amwins North', desc: 'Wholesale · NY', initials: 'AN' },
+{ id: 'risk-strategies', name: 'Risk Strategies', desc: 'Retail · MA', initials: 'RS' },
+{ id: 'truenorth', name: 'TrueNorth Companies', desc: 'Retail · IA', initials: 'TN' }];
+
+Object.assign(window, { BROKERS, AGENCIES });
+
+// ── Scenario data ─────────────────────────────────────────
+const SOURCE = { id: 'acc-zeroday', name: 'ZeroDay Tech Solutions LLC', initials: 'SS', broker: 'Steven Stevens', agency: 'Blue & Blue' };
+const CUR = { name: 'Steven Stevens', agency: 'Blue & Blue', initials: 'SS' };
+
+const CYBER = {
+  id: 'cyber', label: 'Cyber-Surplus',
+  quotes: [
+  { cpn: 'C-4LV7-368875-CYBER-2025', limit: '$1M/$10K/$1,800', address: '1234 Campbell Ave, Jacquesshire, RI', status: 'Active' },
+  { cpn: 'C-4LV7-368875-CYBER-2025', limit: '$1M/$20K/$1,800', address: '88 Harbor St, Providence, RI', status: 'Active' },
+  { cpn: 'C-4LV7-368875-CYBER-2024', limit: '$2M/$20K/$1,800', address: '1234 Campbell Ave, Jacquesshire, RI', status: 'Policy' },
+  { cpn: 'C-4LV7-368875-CYBER-2024', limit: '$2M/$20K/$2,000', address: '512 Birch Rd, Warwick, RI', status: 'Expired' },
+  { cpn: 'C-4LV7-368875-CYBER-2024', limit: '$1M/$20K/$2,000', address: '88 Harbor St, Providence, RI', status: 'Expired' }],
+
+  policies: [
+  { cpn: 'C-4LV7-368875-CYBER-2024', limit: '$2M/$20K/$1,800', address: '1234 Campbell Ave, Jacquesshire, RI', status: 'Bound' }]
+
+};
+const ER_CRIME = {
+  id: 'erc', label: 'ER-Crime',
+  quotes: [
+  { cpn: 'C-4LV7-368875-CRIME-2025', limit: '$2M/$25K/$3,200', address: '1234 Campbell Ave, Jacquesshire, RI', status: 'Active' },
+  { cpn: 'C-4LV7-368875-CRIME-2024', limit: '$1M/$25K/$2,900', address: '512 Birch Rd, Warwick, RI', status: 'Expired' }],
+
+  policies: []
+};
+const ER_DO = {
+  id: 'erdo', label: 'ER-D&O',
+  quotes: [
+  { cpn: 'C-4LV7-368875-DNO-2025', limit: '$3M/$50K/$5,400', address: '88 Harbor St, Providence, RI', status: 'Active' }],
+
+  policies: []
+};
+const BADGE_CLASS = { Active: 'active', Policy: 'policy', Expired: 'expired', Bound: 'policy' };
+
+function linesFor(multi) {return multi ? [CYBER, ER_CRIME, ER_DO] : [CYBER];}
+function itemsOf(line) {
+  return [
+  ...line.quotes.map((q, i) => ({ key: line.id + ':q' + i, kind: 'q', ...q })),
+  ...line.policies.map((p, i) => ({ key: line.id + ':p' + i, kind: 'p', ...p }))];
+
+}
+function allKeys(multi) {return linesFor(multi).flatMap((l) => itemsOf(l).map((it) => it.key));}
+function itemByKey(multi, key) {return linesFor(multi).flatMap(itemsOf).find((it) => it.key === key);}
+
+// ── Small shared bits ─────────────────────────────────────
+function Overline({ children }) {
+  return <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: 6 }}>{children}</div>;
+}
+
+function NeutralOwnerCard() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', border: '1px solid var(--color-grey-30)', background: 'var(--color-grey-10)', borderRadius: 8 }}>
+      <Avatar color="grey" size={36}>{CUR.initials}</Avatar>
+      <div style={{ minWidth: 0 }}>
+        <div style={{ fontWeight: 600, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{CUR.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'flex', gap: 4, alignItems: 'center', marginTop: 2 }}>
+          <Icon name="apartment" size={11} /><span>{CUR.agency}</span>
+        </div>
+      </div>
+    </div>);
+
+}
+
+function Arrow() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 22 }}>
+      <span style={{ width: 28, height: 28, borderRadius: 999, background: 'var(--color-grey-10)', border: '1px solid var(--color-grey-30)', color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name="arrow_forward" size={16} />
+      </span>
+    </div>);
+
+}
+
+function FromTo({ toLabel, toNode }) {
+  return (
+    <div style={{ position: 'sticky', top: 0, zIndex: 4, background: '#fff', margin: '-18px -24px 0', padding: '18px 24px 14px', borderBottom: '1px solid var(--color-grey-30)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 32px 1fr', gap: 12, alignItems: 'start' }}>
+        <div style={{ minWidth: 0 }}><Overline>Current owner</Overline><NeutralOwnerCard /></div>
+        <Arrow />
+        <div style={{ minWidth: 0 }}><Overline>{toLabel}</Overline>{toNode}</div>
+      </div>
+    </div>);
+
+}
+
+function Tip({ text, children }) {
+  const [show, setShow] = React.useState(false);
+  return (
+    <span style={{ position: 'relative', display: 'inline-flex' }}
+    onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} onFocus={() => setShow(true)} onBlur={() => setShow(false)}>
+      {children}
+      {show &&
+      <span role="tooltip" style={{ position: 'absolute', bottom: 'calc(100% + 8px)', right: 0, width: 248, background: 'var(--color-grey-90, #1a1a1a)', color: '#fff', fontSize: 12, lineHeight: 1.45, fontWeight: 400, padding: '8px 10px', borderRadius: 6, boxShadow: 'var(--elevation-4)', zIndex: 10, pointerEvents: 'none', whiteSpace: 'normal' }}>{text}</span>}
+    </span>);
+
+}
+
+function Radio({ checked, label, onClick }) {
+  return (
+    <label onClick={onClick} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: 14 }}>
+      <span style={{ width: 18, height: 18, borderRadius: 999, border: '2px solid ' + (checked ? 'var(--brand-primary)' : 'var(--color-grey-50)'), display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 18px' }}>
+        {checked && <span style={{ width: 8, height: 8, borderRadius: 999, background: 'var(--brand-primary)' }} />}
+      </span>
+      <span>{label}</span>
+    </label>);
+
+}
+
+function Switch({ on, onChange }) {
+  return (
+    <button type="button" role="switch" aria-checked={on} onClick={onChange}
+    style={{ width: 38, height: 22, borderRadius: 999, border: 0, padding: 2, cursor: 'pointer', background: on ? 'var(--brand-primary)' : 'var(--color-grey-50)', display: 'inline-flex', alignItems: 'center', transition: 'background 160ms', flex: '0 0 auto' }}>
+      <span style={{ width: 18, height: 18, borderRadius: 999, background: '#fff', boxShadow: '0 1px 2px rgba(0,0,0,0.28)', transform: on ? 'translateX(16px)' : 'translateX(0)', transition: 'transform 160ms' }} />
+    </button>);
+
+}
+
+// ── Destination-account match (Change ownership) ──────────
+// After a broker is picked the system looks for an existing account on the
+// destination side. Two scenarios (driven by the `destMatch` tweak):
+//   'none'    → no match; a new account is created (green confirmation)
+//   'matches' → candidates found; user must pick one or create new (amber)
+const DEST_MATCHES = [
+{ id: 'zd1', name: 'ZeroDay Tech Solutions LLC', uuid: 'ZD-9786-67834-657', lines: ['Cyber', 'ER-D&O'] },
+{ id: 'zd2', name: 'ZeroDay Technologies Inc', uuid: 'ZD-4471-22189-031', lines: ['Cyber'] },
+{ id: 'zd3', name: 'ZeroDay Tech Solutions', uuid: 'ZD-1180-55620-902', lines: ['ER-Crime', 'ER-D&O'] }];
+
+const NEW_ACCT = { name: SOURCE.name, uuid: 'ZD-9786-67834-657' };
+
+function LineChip({ children }) {
+  return <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)', background: 'var(--color-grey-10)', border: '1px solid var(--color-grey-30)', borderRadius: 999, padding: '2px 8px', whiteSpace: 'nowrap' }}>{children}</span>;
+}
+
+function AccountLink({ name, id }) {
+  return (
+    <a href={'#account/' + id} target="_blank" rel="noopener noreferrer" title="Open account in a new tab"
+    style={{ fontWeight: 600, fontSize: 15, color: 'var(--text-primary)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, width: 'fit-content' }}
+    onMouseEnter={(e) => {e.currentTarget.style.textDecoration = 'underline';e.currentTarget.style.color = 'var(--brand-primary)';}}
+    onMouseLeave={(e) => {e.currentTarget.style.textDecoration = 'none';e.currentTarget.style.color = 'var(--text-primary)';}}>
+      {name}<Icon name="open_in_new" size={13} style={{ color: 'var(--color-grey-60)' }} />
+    </a>);
+
+}
+
+function PickBtn({ selected, label, onClick }) {
+  return (
+    <button onClick={onClick} style={{ flex: '0 0 auto', height: 36, padding: '0 16px', borderRadius: 6, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, border: '1px solid var(--brand-primary)', color: 'var(--brand-primary)', background: selected ? 'var(--color-blue-5)' : '#fff', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {selected && <Icon name="check" size={16} />}{label}
+    </button>);
+
+}
+
+function DestRow({ children, sel }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', border: '1px solid ' + (sel ? 'var(--brand-primary)' : 'var(--color-grey-30)'), background: sel ? 'var(--color-blue-5)' : '#fff', borderRadius: 8 }}>
+      {children}
+    </div>);
+
+}
+
+function DestNote({ matches }) {
+  return (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '10px 12px', borderRadius: 8, fontSize: 13, lineHeight: 1.45,
+      background: matches ? 'var(--color-orange-10)' : 'var(--color-green-10)',
+      border: '1px solid ' + (matches ? 'var(--color-orange-50)' : 'var(--color-green-50)'),
+      color: matches ? 'var(--color-orange-140)' : 'var(--color-green-140)' }}>
+      <Icon name={matches ? 'warning' : 'check_circle'} kind="filled" size={18} style={{ flex: '0 0 18px', marginTop: 1, color: matches ? 'var(--color-orange-120)' : 'var(--color-green-100)' }} />
+      <span>{matches ?
+        'Matching accounts found. Select the correct account before continuing with the change in ownership.' :
+        'No matching accounts found — a new account will be created and existing signed policies will be moved.'}</span>
+    </div>);
+
+}
+
+function DestinationAccount({ destMatch, st, set }) {
+  const matches = destMatch === 'matches';
+  return (
+    <div>
+      <label className="tx-label" style={{ marginBottom: 8 }}>Destination account</label>
+      <DestNote matches={matches} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 8 }}>
+        {!matches &&
+        <DestRow>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontWeight: 600, fontSize: 15 }}>{NEW_ACCT.name}</div>
+              <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>UUID · {NEW_ACCT.uuid}</div>
+            </div>
+            <span style={{ flex: '0 0 auto', fontSize: 12, fontWeight: 600, color: 'var(--brand-primary)', background: 'var(--color-blue-10)', borderRadius: 999, padding: '5px 12px' }}>New account</span>
+          </DestRow>
+        }
+        {matches && DEST_MATCHES.map((a) => {
+          const sel = st.destAcct === a.id;
+          return (
+            <DestRow key={a.id} sel={sel}>
+              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <AccountLink name={a.name} id={a.id} />
+                <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>UUID · {a.uuid}</div>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 2 }}>{a.lines.map((l) => <LineChip key={l}>{l}</LineChip>)}</div>
+              </div>
+              <PickBtn selected={sel} label={sel ? 'Selected' : 'Select'} onClick={() => set({ destAcct: sel ? null : a.id })} />
+            </DestRow>);
+
+        })}
+        {matches &&
+        <DestRow sel={st.destAcct === 'NEW'}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontWeight: 600, fontSize: 15 }}>{NEW_ACCT.name}</div>
+              <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>None of these — create a brand-new account</div>
+            </div>
+            <PickBtn selected={st.destAcct === 'NEW'} label={st.destAcct === 'NEW' ? 'Selected' : 'Create new account'} onClick={() => set({ destAcct: st.destAcct === 'NEW' ? null : 'NEW' })} />
+          </DestRow>
+        }
+      </div>
+    </div>);
+
+}
+
+// ── Change ownership tab ──────────────────────────────────
+function OwnershipTab({ multi, advanced, destMatch, st, set }) {
+  const lines = linesFor(multi);
+  const brokerSel = st.brokerId != null;
+  const selLines = st.ownLines;
+  const setLine = (id) => {
+    const next = new Set(selLines);
+    next.has(id) ? next.delete(id) : next.add(id);
+    if (next.size === 0) return; // keep at least one
+    set({ ownLines: next });
+  };
+  const chosenLines = lines.filter((l) => selLines.has(l.id));
+  const qCount = chosenLines.reduce((n, l) => n + l.quotes.length, 0);
+  const setAdv = (k) => set({ adv: { ...st.adv, [k]: !st.adv[k] } });
+  const advOn = Object.values(st.adv).filter(Boolean).length;
+  const ADV = [
+  { k: 'w2r', label: 'W2R Transfer' },
+  { k: 'crossAgency', label: 'Cross Agency Override' },
+  { k: 'crossBind', label: 'Cross Agency Bind Override' }];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <FromTo
+        toLabel="New owner"
+        toNode={<BrokerSearchField value={st.brokerId} onChange={(id) => set({ brokerId: id })} autoFocus placeholder="Search broker or agency…" />} />
+      
+
+      {brokerSel && multi &&
+      <div>
+          <label className="tx-label" style={{ marginBottom: 8 }}>
+            Account lines to change ownership of
+            <span style={{ fontWeight: 400, color: 'var(--text-secondary)', marginLeft: 6 }}>{selLines.size} of {lines.length}</span>
+          </label>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {lines.map((l) => {
+            const on = selLines.has(l.id);
+            const n = l.quotes.length + l.policies.length;
+            return (
+              <div key={l.id} onClick={() => setLine(l.id)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', cursor: 'pointer', border: '1px solid ' + (on ? 'var(--brand-primary)' : 'var(--color-grey-30)'), background: on ? 'var(--color-blue-5)' : '#fff', borderRadius: 8 }}>
+                  <Checkbox checked={on} onChange={() => setLine(l.id)} />
+                  <span style={{ flex: 1, fontWeight: 600, fontSize: 14 }}>{l.label}</span>
+                  <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{l.quotes.length} quotes{l.policies.length ? ' · ' + l.policies.length + ' policy' : ''}</span>
+                </div>);
+
+          })}
+          </div>
+        </div>
+      }
+
+      {brokerSel && <DestinationAccount destMatch={destMatch} st={st} set={set} />}
+
+      {brokerSel &&
+      <div>
+          <button onClick={() => set({ rulesOpen: !st.rulesOpen })} style={{ background: 'transparent', border: 0, padding: '2px 0', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Icon name={st.rulesOpen ? 'expand_more' : 'chevron_right'} size={18} />
+            Ownership rules
+            {!st.rulesOpen && <span style={{ color: 'var(--text-secondary)', fontWeight: 400, marginLeft: 6 }}>· {st.rule === 'close' ? 'Close all quotes' : 'Transfer all quotes'}</span>}
+          </button>
+          {st.rulesOpen &&
+        <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 12, paddingLeft: 22 }}>
+              <Radio checked={st.rule === 'transfer'} onClick={() => set({ rule: 'transfer' })} label={`Transfer ownership and all quotes (${qCount} quotes)`} />
+              <Radio checked={st.rule === 'close'} onClick={() => set({ rule: 'close' })} label="Close all quotes and set new broker as owner." />
+            </div>
+        }
+        </div>
+      }
+
+      {brokerSel && advanced &&
+      <div>
+          <button onClick={() => set({ advOpen: !st.advOpen })} style={{ background: 'transparent', border: 0, padding: '2px 0', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Icon name={st.advOpen ? 'expand_more' : 'chevron_right'} size={18} />
+            Advanced
+            {!st.advOpen && advOn > 0 && <span style={{ color: 'var(--brand-primary)', fontWeight: 600, marginLeft: 6 }}>· {advOn} on</span>}
+          </button>
+          {st.advOpen &&
+        <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 14, paddingLeft: 22 }}>
+              {ADV.map((a) =>
+          <label key={a.k} onClick={() => setAdv(a.k)} style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', fontSize: 14 }}>
+                  <Switch on={!!st.adv[a.k]} onChange={() => setAdv(a.k)} />
+                  <span>{a.label}</span>
+                </label>
+          )}
+            </div>
+        }
+        </div>
+      }
+    </div>);
+
+}
+
+// ── Move items tab ────────────────────────────────────────
+function DestAccountField({ multi, st, set }) {
+  const [q, setQ] = React.useState('');
+  if (st.dest === 'NEW') {
+    const firstKey = [...st.picked][0];
+    const addr = firstKey ? (itemByKey(multi, firstKey) || {}).address : null;
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', border: '1px solid var(--color-green-50)', background: 'var(--color-green-10)', borderRadius: 8 }}>
+        <span style={{ width: 36, height: 36, borderRadius: 6, background: '#fff', color: 'var(--color-green-140)', border: '1px solid var(--color-green-50)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}><Icon name="add_business" /></span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontWeight: 600, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{SOURCE.name}</div>
+          <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+            {addr ?
+            <><Icon name="place" size={12} style={{ color: 'var(--color-grey-60)' }} />{addr}<span style={{ color: 'var(--color-grey-50)' }}>· from selected item</span></> :
+            <span>Name &amp; address carried from the items you select</span>}
+          </div>
+        </div>
+        <button onClick={() => set({ dest: null })} style={{ background: 'transparent', border: 0, padding: 4, cursor: 'pointer', color: 'var(--text-secondary)' }}><Icon name="close" size={16} /></button>
+      </div>);
+
+  }
+  if (st.dest) {
+    const acc = ACCOUNTS.find((a) => a.id === st.dest);
+    return <SelectedAccountChip account={acc} onClear={() => set({ dest: null })} />;
+  }
+  const norm = (s) => (s || '').toLowerCase();
+  const results = ACCOUNTS.filter((a) => a.id !== SOURCE.id).filter((a) => {
+    const t = norm(q);if (!t) return true;
+    return norm(a.name).includes(t) || norm(a.domain).includes(t) || norm(a.broker).includes(t) || norm(a.agency).includes(t);
+  }).slice(0, 6);
+  return (
+    <div style={{ position: 'relative' }}>
+      <div className="tx-input-shell">
+        <Icon name="search" />
+        <input autoFocus className="tx-input with-icon" placeholder="Search account by name, domain, or UUID…" value={q} onChange={(e) => setQ(e.target.value)} />
+        {q && <span onMouseDown={(e) => {e.preventDefault();setQ('');}} style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', cursor: 'pointer', display: 'inline-flex' }}><Icon name="close" size={16} /></span>}
+      </div>
+      <div style={{ marginTop: 8, border: '1px solid var(--color-grey-30)', borderRadius: 8, background: '#fff', overflow: 'hidden', maxHeight: 280, overflowY: 'auto' }}>
+        {results.map((a) =>
+        <div key={a.id} onMouseDown={(e) => e.preventDefault()} onClick={() => set({ dest: a.id })}
+        style={{ display: 'grid', gridTemplateColumns: '32px 1fr auto', gap: 10, padding: '10px 12px', cursor: 'pointer', borderBottom: '1px solid var(--color-grey-30)', alignItems: 'center' }}
+        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-blue-5)'} onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}>
+            <span style={{ width: 32, height: 32, borderRadius: 6, background: 'var(--color-grey-10)', color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="business" size={18} /></span>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontWeight: 500, fontSize: 14 }}>{highlight(a.name, q)}</div>
+              <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>{a.domain} · {a.broker} @ {a.agency}</div>
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--text-secondary)', whiteSpace: 'nowrap', textAlign: 'right' }}>{a.rev} · {a.state}</div>
+          </div>
+        )}
+        <div onMouseDown={(e) => e.preventDefault()} onClick={() => set({ dest: 'NEW' })}
+        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', cursor: 'pointer', color: 'var(--brand-primary)' }}
+        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-blue-5)'} onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}>
+          <span style={{ width: 32, height: 32, borderRadius: 6, background: 'var(--color-blue-10)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="add" size={18} /></span>
+          <div>
+            <div style={{ fontWeight: 600, fontSize: 14 }}>Create a new account</div>
+            <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Split selected items into a brand-new account</div>
+          </div>
+        </div>
+      </div>
+    </div>);
+
+}
+
+function MoveNote({ variant }) {
+  const cfg = {
+    subset: { bg: 'var(--color-blue-5)', bd: 'var(--color-blue-10)', fg: 'var(--color-blue-140)', ic: 'info', icf: 'var(--brand-primary)' },
+    all: { bg: 'var(--color-orange-10)', bd: 'var(--color-orange-50)', fg: 'var(--color-orange-140)', ic: 'inventory_2', icf: 'var(--color-orange-120)' },
+    new: { bg: 'var(--color-green-10)', bd: 'var(--color-green-50)', fg: 'var(--color-green-140)', ic: 'call_split', icf: 'var(--color-green-100)' }
+  }[variant];
+  const text = {
+    subset: <>Items will follow this account's broker. <strong>{SOURCE.name}</strong> stays open with the rest.</>,
+    all: <>All items are being transferred — the source account <strong>{SOURCE.name}</strong> will be archived.</>,
+    new: <>Selected items will be <strong>split into a new account</strong> — its name &amp; address are carried from the items below. <strong>{SOURCE.name}</strong> stays open with the rest.</>
+  }[variant];
+  return (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '10px 12px', background: cfg.bg, border: '1px solid ' + cfg.bd, borderRadius: 8, fontSize: 12, color: cfg.fg }}>
+      <Icon name={cfg.ic} kind="filled" size={16} style={{ flex: '0 0 16px', marginTop: 1, color: cfg.icf }} />
+      <span>{text}</span>
+    </div>);
+
+}
+
+function ItemPicker({ multi, st, set }) {
+  const lines = linesFor(multi);
+  const active = lines.find((l) => l.id === st.activeLine) || lines[0];
+  const items = itemsOf(active);
+  const activeKeys = items.map((it) => it.key);
+  const allActiveSel = activeKeys.length > 0 && activeKeys.every((k) => st.picked.has(k));
+  const toggle = (key) => {
+    const next = new Set(st.picked);
+    next.has(key) ? next.delete(key) : next.add(key);
+    set({ picked: next });
+  };
+  const toggleAll = () => {
+    const next = new Set(st.picked);
+    if (allActiveSel) activeKeys.forEach((k) => next.delete(k));else
+    activeKeys.forEach((k) => next.add(k));
+    set({ picked: next });
+  };
+  const lineSel = (l) => itemsOf(l).filter((it) => st.picked.has(it.key)).length;
+
+  const SectionHdr = ({ children, top }) =>
+  <div style={{ padding: '8px 14px', background: 'var(--color-grey-10)', fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: 0.5, borderTop: top ? '1px solid var(--color-grey-30)' : 'none' }}>{children}</div>;
+
+  const Row = ({ it }) =>
+  <label onClick={() => toggle(it.key)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderTop: '1px solid var(--color-grey-30)', cursor: 'pointer', fontSize: 13 }}>
+      <Checkbox checked={st.picked.has(it.key)} onChange={() => toggle(it.key)} />
+      <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <span style={{ fontWeight: 500 }}>{it.cpn}</span>
+        <span style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+          <Icon name="place" size={12} style={{ color: 'var(--color-grey-60)' }} />{it.address}
+          <span style={{ color: 'var(--color-grey-40)' }}>·</span>{it.limit}
+        </span>
+      </span>
+      <span className={'cp-badge cp-badge--' + BADGE_CLASS[it.status]}>{it.status}</span>
+    </label>;
+
+  const quotes = items.filter((it) => it.kind === 'q');
+  const policies = items.filter((it) => it.kind === 'p');
+  return (
+    <div>
+      <label className="tx-label">
+        Items to transfer
+        <span style={{ fontWeight: 400, color: 'var(--text-secondary)', marginLeft: 6 }}>{st.picked.size} selected</span>
+        <span onClick={toggleAll} style={{ float: 'right', fontSize: 12, color: 'var(--brand-primary)', cursor: 'pointer', fontWeight: 500 }}>{(allActiveSel ? 'Deselect all' : 'Select all') + (multi ? ' in ' + active.label : '')}</span>
+      </label>
+      <div style={{ border: '1px solid var(--color-grey-30)', borderRadius: 8, overflow: 'hidden' }}>
+        {multi &&
+        <div style={{ display: 'flex', gap: 18, padding: '0 14px', background: 'var(--color-grey-10)', borderBottom: '1px solid var(--color-grey-30)' }}>
+            {lines.map((l) => {
+            const on = l.id === active.id;const c = lineSel(l);
+            return (
+              <button key={l.id} onClick={() => set({ activeLine: l.id })} style={{ background: 'none', border: 0, borderBottom: '2px solid ' + (on ? 'var(--brand-primary)' : 'transparent'), padding: '9px 2px', marginBottom: -1, cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: on ? 600 : 500, color: on ? 'var(--text-primary)' : 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                  {l.label}
+                  {c > 0 && <span style={{ fontSize: 11, fontWeight: 600, background: 'var(--color-blue-10)', color: 'var(--brand-primary)', borderRadius: 999, padding: '0 6px', minWidth: 18, textAlign: 'center' }}>{c}</span>}
+                </button>);
+
+          })}
+          </div>
+        }
+        <SectionHdr>Quotes</SectionHdr>
+        {quotes.map((it) => <Row key={it.key} it={it} />)}
+        {policies.length > 0 && <SectionHdr top>Policies</SectionHdr>}
+        {policies.map((it) => <Row key={it.key} it={it} />)}
+      </div>
+    </div>);
+
+}
+
+function MoveTab({ multi, st, set }) {
+  const chosen = st.dest != null;
+  const isNew = st.dest === 'NEW';
+  const allSel = st.picked.size > 0 && st.picked.size === allKeys(multi).length;
+  const variant = isNew ? 'new' : allSel ? 'all' : 'subset';
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <FromTo toLabel={isNew ? 'New account' : 'Destination account'} toNode={<DestAccountField multi={multi} st={st} set={set} />} />
+      {chosen && <MoveNote variant={variant} />}
+      {chosen && <ItemPicker multi={multi} st={st} set={set} />}
+    </div>);
+
+}
+
+// ── Center states (submit / done) ─────────────────────────
+function CenterState({ spinner, icon, iconColor, iconBg, title, sub }) {
+  return (
+    <div style={{ padding: '44px 24px 40px', textAlign: 'center' }}>
+      {spinner ?
+      <div className="ma-spinner" style={{ margin: '0 auto 18px' }} /> :
+      <div style={{ width: 64, height: 64, borderRadius: 999, background: iconBg, color: iconColor, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}><Icon name={icon} kind="filled" size={36} /></div>}
+      <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>{title}</div>
+      <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.5, maxWidth: 420, margin: '0 auto' }}>{sub}</div>
+    </div>);
+
+}
+
+// ── The modal ─────────────────────────────────────────────
+const initialState = (multi, picked) => ({
+  brokerId: null, ownLines: new Set(linesFor(multi).map((l) => l.id)), rulesOpen: false, rule: 'transfer',
+  advOpen: false, adv: { w2r: false, crossAgency: false, crossBind: false }, destAcct: null,
+  dest: null, picked: picked && picked.length ? new Set(picked) : new Set(), activeLine: 'cyber'
+});
+
+function ManageAccountModal({ multi, onClose, initialTab = 'ownership', initialPicked = null, advanced = false, destMatch = 'none' }) {
+  const toast = useToast();
+  const [tab, setTab] = React.useState(initialTab);
+  const [phase, setPhase] = React.useState('edit'); // edit | submitting | done
+  const [mode, setMode] = React.useState('initiate'); // initiate | direct
+  const [st, setSt] = React.useState(() => initialState(multi, initialPicked));
+  const set = (patch) => setSt((s) => ({ ...s, ...patch }));
+
+  React.useEffect(() => {
+    const onKey = (e) => {if (e.key === 'Escape') onClose();};
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, []);
+
+  // ── derive footer + validity per tab ──
+  const lines = linesFor(multi);
+  let footerLeft = null,canSubmit = false,doneTitle = '',doneSub = '';
+  if (tab === 'ownership') {
+    const chosenLines = lines.filter((l) => st.ownLines.has(l.id));
+    const q = chosenLines.reduce((n, l) => n + l.quotes.length, 0);
+    const p = chosenLines.reduce((n, l) => n + l.policies.length, 0);
+    const broker = st.brokerId && window.BROKERS.find((b) => b.id === st.brokerId);
+    const needDest = destMatch === 'matches';
+    const destPicked = !needDest || st.destAcct != null;
+    canSubmit = !!broker && destPicked;
+    footerLeft = !broker ?
+    <span style={{ color: 'var(--text-disabled)' }}>Pick a destination broker to continue.</span> :
+    needDest && st.destAcct == null ?
+    <span style={{ color: 'var(--text-disabled)' }}>Select a matching account or create a new one.</span> :
+    <Impact>{multi ? <><strong>{st.ownLines.size} line{st.ownLines.size > 1 ? 's' : ''}</strong> · {q} quotes{p ? ' & ' + p + ' policy' : ''}</> : <><strong>{q} quotes</strong> &amp; {p} policy</>} → <strong>{broker.name}</strong> @ {broker.agency}</Impact>;
+    doneTitle = 'Ownership changed';
+    doneSub = broker ? <>{SOURCE.name} is now owned by <strong>{broker.name}</strong> @ {broker.agency}.</> : '';
+  } else {
+    const n = st.picked.size;
+    canSubmit = st.dest != null && n > 0;
+    const destName = st.dest === 'NEW' ? 'new account' : st.dest ? ACCOUNTS.find((a) => a.id === st.dest).name : '';
+    footerLeft = st.dest == null ?
+    <span style={{ color: 'var(--text-disabled)' }}>Pick a destination account to choose items.</span> :
+    n === 0 ?
+    <span style={{ color: 'var(--text-disabled)' }}>Select quotes &amp; policies to move.</span> :
+    <Impact><strong>{n} item{n > 1 ? 's' : ''}</strong> → <strong>{destName}</strong></Impact>;
+    doneTitle = st.dest === 'NEW' ? 'New account created' : 'Items transferred';
+    doneSub = st.dest === 'NEW' ?
+    <>{n} item{n > 1 ? 's' : ''} split into a new account. {SOURCE.name} stays open with the rest.</> :
+    <>{n} item{n > 1 ? 's' : ''} transferred to <strong>{destName}</strong>.</>;
+  }
+
+  const submit = (m) => {
+    setMode(m);
+    setPhase('submitting');
+    setTimeout(() => setPhase('done'), 1500);
+  };
+  const finish = () => {
+    onClose();
+    toast && toast(tab === 'ownership' ? 'Ownership changed' : 'Items transferred');
+  };
+  const switchTab = (t) => {if (t !== tab) {setTab(t);}};
+
+  return (
+    <div onMouseDown={(e) => {if (e.target === e.currentTarget) onClose();}}
+    style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, padding: 24 }}>
+      <div role="dialog" aria-modal="true" data-screen-label="Manage account"
+      style={{ width: 680, maxHeight: '88vh', background: '#fff', borderRadius: 16, boxShadow: 'var(--elevation-5)', display: 'flex', flexDirection: 'column', overflow: 'hidden', fontFamily: 'var(--font-family-body)', color: 'var(--text-primary)' }}>
+
+        {/* Header */}
+        <div style={{ padding: '20px 24px 12px', display: 'flex', alignItems: 'flex-start', gap: 12, flex: '0 0 auto' }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontWeight: 700, fontSize: 20, lineHeight: '26px' }}>Manage account</div>
+            <div style={{ marginTop: 4, color: 'var(--text-secondary)', fontSize: 14 }}>{SOURCE.name}</div>
+          </div>
+          <button className="cp-icon-btn" onClick={onClose}><Icon name="close" /></button>
+        </div>
+
+        {phase === 'edit' &&
+        <>
+            {/* Tabs */}
+            <div style={{ padding: '8px 24px 0', flex: '0 0 auto' }}>
+              <div style={{ display: 'flex', background: 'var(--color-grey-10)', borderRadius: 8, padding: 4, gap: 4 }}>
+                {[{ id: 'ownership', label: 'Change ownership', ico: 'swap_horiz' }, { id: 'move', label: 'Transfer quotes/policies', ico: 'alt_route' }].map((m) => {
+                const on = m.id === tab;
+                return (
+                  <button key={m.id} onClick={() => switchTab(m.id)} style={{ flex: 1, height: 36, borderRadius: 6, background: on ? '#fff' : 'transparent', border: 0, boxShadow: on ? '0 1px 2px rgba(0,0,0,0.08)' : 'none', fontWeight: on ? 600 : 500, color: on ? 'var(--text-primary)' : 'var(--text-secondary)', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 14, fontFamily: 'inherit' }}>
+                      <Icon name={m.ico} size={16} />{m.label}
+                    </button>);
+
+              })}
+              </div>
+            </div>
+
+            {/* Body (scrollable) */}
+            <div style={{ padding: '18px 24px 20px', overflowY: 'auto', flex: '1 1 auto' }}>
+              {tab === 'ownership' ?
+            <OwnershipTab multi={multi} advanced={advanced} destMatch={destMatch} st={st} set={set} /> :
+            <MoveTab multi={multi} st={st} set={set} />}
+            </div>
+
+            {/* Footer — live impact stacked above actions so the row never crowds */}
+            <div style={{ borderTop: '1px solid var(--color-grey-30)', flex: '0 0 auto' }}>
+              <div style={{ padding: '12px 24px 0', fontSize: 13, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>{footerLeft}</div>
+              <div style={{ padding: '12px 24px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+                <button className="tx-btn tx-btn--secondary" onClick={onClose}>Cancel</button>
+                <div style={{ flex: 1 }} />
+                <Tip text="Transfers immediately and overrides — no broker confirmation required.">
+                  <button className="tx-btn tx-btn--secondary" disabled={!canSubmit} onClick={() => submit('direct')} aria-label="Direct transfer — no broker confirmation required">Direct transfer</button>
+                </Tip>
+                <Tip text="Requests confirmation first — sends BOR emails to both brokers before the transfer completes.">
+                  <button className="tx-btn tx-btn--primary" disabled={!canSubmit} onClick={() => submit('initiate')} aria-label="Initiate transfer — requests broker confirmation by email">Initiate transfer</button>
+                </Tip>
+              </div>
+            </div>
+          </>
+        }
+
+        {phase === 'submitting' &&
+        <CenterState spinner title={tab === 'ownership' ? 'Transferring ownership…' : 'Transferring items…'} sub={
+          mode === 'direct' ?
+          (tab === 'ownership' ? 'Directly transferring ownership and updating records — no broker confirmation required.' : 'Directly transferring the selected items — no broker confirmation required.') :
+          (tab === 'ownership' ? 'Sending BOR emails to the existing and destination broker, and updating ownership.' : 'Notifying the brokers by email and re-assigning the selected items.')} />
+        }
+
+        {phase === 'done' &&
+        <>
+            <CenterState icon="check_circle" iconColor="var(--color-green-100)" iconBg="var(--color-green-10)" title={doneTitle} sub={doneSub} />
+            <div style={{ padding: '16px 24px', borderTop: '1px solid var(--color-grey-30)', display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
+              {tab === 'move' && (() => {
+              const dn = st.dest === 'NEW' ? 'new account' : st.dest ? (ACCOUNTS.find((a) => a.id === st.dest) || {}).name : '';
+              return <button className="tx-btn tx-btn--secondary" onClick={() => {onClose();toast && toast('Opening ' + dn + '…');}}>View {dn}</button>;
+            })()}
+              <button className="tx-btn tx-btn--primary" onClick={finish}>Done</button>
+            </div>
+          </>
+        }
+      </div>
+    </div>);
+
+}
+
+function Impact({ children }) {
+  return (
+    <>
+      <Icon name="east" size={16} style={{ color: 'var(--color-grey-60)', flex: '0 0 auto' }} />
+      <span style={{ lineHeight: 1.4 }}>{children}</span>
+    </>);
+
+}
+
+Object.assign(window, { ManageAccountModal });
+</script>
+  <script type="text/babel" data-source="manage-account-app.jsx">
+// manage-account-app.jsx — demo launcher for the interactive Manage account modal.
+// A light account-page backdrop + a single/multi-line scenario toggle + the trigger.
+
+const { Icon, Avatar, ToastHost, ManageAccountModal } = window;
+
+function ScenarioToggle({ multi, onChange }) {
+  const opts = [
+    { id: false, label: 'Single line (Cyber)' },
+    { id: true, label: 'Multi-line (Cyber + ER)' },
+  ];
+  return (
+    <div style={{ display: 'inline-flex', background: 'var(--color-grey-10)', borderRadius: 8, padding: 4, gap: 4 }}>
+      {opts.map((o) => {
+        const on = o.id === multi;
+        return (
+          <button key={String(o.id)} onClick={() => onChange(o.id)} style={{
+            height: 32, padding: '0 14px', borderRadius: 6, border: 0,
+            background: on ? '#fff' : 'transparent', boxShadow: on ? '0 1px 2px rgba(0,0,0,0.08)' : 'none',
+            fontWeight: on ? 600 : 500, fontSize: 13, fontFamily: 'inherit',
+            color: on ? 'var(--text-primary)' : 'var(--text-secondary)', cursor: 'pointer'
+          }}>{o.label}</button>
+        );
+      })}
+    </div>
+  );
+}
+
+function Backdrop({ multi, onOpen }) {
+  return (
+    <div style={{ maxWidth: 1080, margin: '0 auto', padding: '40px 32px' }}>
+      {/* Account header */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+        <Avatar color="orange" size={48}>ZT</Avatar>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--text-primary)' }}>ZeroDay Tech Solutions LLC</div>
+          <div style={{ fontSize: 13, color: 'var(--text-secondary)', display: 'flex', gap: 8, alignItems: 'center', marginTop: 4 }}>
+            <span>zerodaytech.com</span><span style={{ color: 'var(--color-grey-50)' }}>·</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="person" size={13} />Steven Stevens @ Blue &amp; Blue</span>
+            <span style={{ color: 'var(--color-grey-50)' }}>·</span><span>RI</span>
+          </div>
+        </div>
+        <button className="tx-btn tx-btn--primary" onClick={onOpen} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <Icon name="manage_accounts" size={18} />Manage account
+        </button>
+      </div>
+
+      <div style={{ height: 1, background: 'var(--color-grey-30)', margin: '24px 0' }} />
+
+      {/* Hint card */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '16px 18px', border: '1px dashed var(--color-grey-40)', borderRadius: 12, background: 'var(--color-grey-10)' }}>
+        <Icon name="touch_app" size={22} style={{ color: 'var(--brand-primary)' }} />
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>Interactive prototype</div>
+          <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginTop: 2 }}>Click <strong>Manage account</strong> to open the modal. Both tabs work: search a broker / account, pick lines &amp; items, expand ownership rules, create a new account, and submit.</div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
+          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: 'var(--text-secondary)' }}>Scenario</span>
+          <ScenarioToggle multi={multi.value} onChange={multi.set} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [open, setOpen] = React.useState(false);
+  const [multi, setMulti] = React.useState(false);
+  return (
+    <ToastHost>
+      <div style={{ minHeight: '100vh', background: 'var(--bg-canvas, #fafafa)', fontFamily: 'var(--font-family-body)' }}>
+        <Backdrop multi={{ value: multi, set: setMulti }} onOpen={() => setOpen(true)} />
+        {open && <ManageAccountModal key={multi ? 'm' : 's'} multi={multi} onClose={() => setOpen(false)} />}
+      </div>
+    </ToastHost>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+</body>
+</html>
