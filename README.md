@@ -1,18 +1,22 @@
 # Account transfer and Manage account: interactive prototypes
 
+### → [Open the live prototypes](https://szg-sudo.github.io/design-prototypes/)
+
+The files in this repository are source. The links below open the running versions.
+
 Two working prototypes from an internal insurance product problem: moving an account, or specific quotes and policies, from one broker to another.
 
 ## Open them
 
 Both are single self-contained HTML files. Nothing to install and nothing to build.
 
-### ▶ [1. Account transfer, the integrated prototype](01-account-transfer.html)
+### ▶ [1. Account transfer, the integrated prototype](https://szg-sudo.github.io/design-prototypes/01-account-transfer.html)
 
 A real account page wired to the transfer modal, with every entry point live. Open the **⋮** menu on the account header, the **⋯** on any quote row, or tick two or more quote rows to use the bulk action bar.
 
 Use the **Tweaks panel**, bottom right, to switch scenarios. It exposes the account line configuration, the destination account match states, and the permission gated advanced controls, so you can reach the edge cases directly rather than clicking toward them.
 
-### ▶ [2. Manage account, the modal on its own](02-manage-account.html)
+### ▶ [2. Manage account, the modal on its own](https://szg-sudo.github.io/design-prototypes/02-manage-account.html)
 
 The modal in isolation, with a scenario toggle between a single line account and a multi line account, so both can be walked without hunting for them. Click **Manage account** to open it. Both tabs work: search a broker or account, pick lines and items, expand ownership rules, create a new account, and submit.
 
