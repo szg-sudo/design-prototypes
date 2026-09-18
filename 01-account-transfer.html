@@ -1579,8 +1579,8 @@ const __TWEAKS_STYLE = `
     font:600 12px/1 ui-sans-serif,system-ui,-apple-system,sans-serif}
   .twk-reopen:hover{background:#fff;box-shadow:0 8px 26px rgba(0,0,0,.2)}
   .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
-    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
-    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    max-height:min(58vh,560px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom left;
     background:rgba(250,249,247,.78);color:#29261b;
     -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
     border:.5px solid rgba(255,255,255,.6);border-radius:14px;
@@ -1717,7 +1717,10 @@ function useTweaks(defaults) {
 function TweaksPanel({ title = 'Tweaks', children }) {
   const [open, setOpen] = React.useState(true);
   const dragRef = React.useRef(null);
-  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const offsetRef = React.useRef({
+    x: Math.max(16, (typeof window !== 'undefined' ? window.innerWidth : 1440) - 280 - 72),
+    y: 16,
+  });
   const PAD = 16;
 
   const clampToViewport = React.useCallback(() => {
