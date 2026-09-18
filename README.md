@@ -4,14 +4,19 @@ Two working prototypes from an internal insurance product problem: moving an acc
 
 ## Open them
 
-Both are single self-contained HTML files. Double click either one, or open the hosted links below. Nothing to install and nothing to build.
+Both are single self-contained HTML files. Nothing to install and nothing to build.
 
-| | What it shows |
-|---|---|
-| `01-account-transfer.html` | The integrated prototype. A real account page wired to the transfer modal, with every entry point live: the header kebab, the quote row menus, and the bulk action bar. |
-| `02-manage-account.html` | The modal on its own, with a toggle between a single line account and a multi line account, so both scenarios can be walked without hunting for them. |
+### ▶ [1. Account transfer, the integrated prototype](01-account-transfer.html)
 
-Use the **Tweaks panel** to switch scenarios. It exposes the account line configuration, the destination account match states, and the permission gated advanced controls, so you can reach the edge cases directly rather than clicking toward them.
+A real account page wired to the transfer modal, with every entry point live. Open the **⋮** menu on the account header, the **⋯** on any quote row, or tick two or more quote rows to use the bulk action bar.
+
+Use the **Tweaks panel**, bottom right, to switch scenarios. It exposes the account line configuration, the destination account match states, and the permission gated advanced controls, so you can reach the edge cases directly rather than clicking toward them.
+
+### ▶ [2. Manage account, the modal on its own](02-manage-account.html)
+
+The modal in isolation, with a scenario toggle between a single line account and a multi line account, so both can be walked without hunting for them. Click **Manage account** to open it. Both tabs work: search a broker or account, pick lines and items, expand ownership rules, create a new account, and submit.
+
+Best viewed on a desktop browser at 1280px or wider.
 
 ## What the prototypes resolve
 
@@ -24,8 +29,6 @@ The direction here does three things:
 **Progressive disclosure tied to the data, not to a preference.** The account line selector appears only when the account actually has multiple lines. Ownership rules are always present but collapsed to a single expandable link, with the active rule shown inline when collapsed.
 
 **Destination handling that pre-empts the error.** Once a broker is picked, the flow checks for an existing account on the destination side. If matches exist, submission is gated until one is chosen or a new account is created, which is the step that previously produced duplicate accounts.
-
-Full decision record, including the open question still outstanding on the quote row menu, is in `CLAUDE.md` in the source project.
 
 ## How these were built
 

@@ -1503,7 +1503,21 @@ html, body { margin: 0; padding: 0; background: #f0eee9; font-family: var(--font
     <strong style="font-weight:600">Account transfer</strong>
     <span style="opacity:.72">Interactive prototype &middot; Shamraiz Gul &middot; built in code with AI-assisted tooling</span>
   </div>
+  <div style="font:13px/1.5 'Public Sans',system-ui,sans-serif;background:#f7f6f3;border-bottom:1px solid #e6e3dd;color:#29261b;padding:12px 16px">
+    <div style="max-width:1180px;margin:0 auto;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+      <span aria-hidden="true" style="font-size:15px;line-height:1.35">&#128073;</span>
+      <div style="flex:1;min-width:280px">
+        <div style="font-weight:600;margin-bottom:2px">Three ways into the transfer flow</div>
+        <div style="opacity:.75">Open the <strong>&#8942;</strong> menu on the account header, the <strong>&#8943;</strong> on any quote row, or tick two or more quote rows to use the bulk action bar.</div>
+      </div>
+      <div style="flex:1;min-width:280px">
+        <div style="font-weight:600;margin-bottom:2px">Switch scenarios in the Tweaks panel</div>
+        <div style="opacity:.75">Bottom right. Single line vs multi line account, destination match states, and the permission gated advanced options.</div>
+      </div>
+    </div>
+  </div>
   <div id="root"></div>
+  <noscript><div style="font:14px/1.6 system-ui,sans-serif;padding:32px 16px;max-width:640px;margin:0 auto">This prototype runs on JavaScript. Please enable it, or open the file in a different browser.</div></noscript>
 
   <script type="text/babel" data-source="tweaks-panel.jsx">
 
@@ -1555,6 +1569,15 @@ html, body { margin: 0; padding: 0; background: #f0eee9; font-family: var(--font
 // ─────────────────────────────────────────────────────────────────────────────
 
 const __TWEAKS_STYLE = `
+  .twk-reopen{position:fixed;right:16px;bottom:16px;z-index:2147483646;
+    appearance:none;display:inline-flex;align-items:center;gap:6px;
+    height:36px;padding:0 14px;border-radius:18px;
+    background:rgba(250,249,247,.92);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(0,0,0,.12);
+    box-shadow:0 6px 20px rgba(0,0,0,.16);cursor:pointer;
+    font:600 12px/1 ui-sans-serif,system-ui,-apple-system,sans-serif}
+  .twk-reopen:hover{background:#fff;box-shadow:0 8px 26px rgba(0,0,0,.2)}
   .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
     max-height:calc(100vh - 32px);display:flex;flex-direction:column;
     transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
@@ -1692,7 +1715,7 @@ function useTweaks(defaults) {
 // flips off in lockstep; the host echoes __deactivate_edit_mode back which
 // is what actually hides the panel.
 function TweaksPanel({ title = 'Tweaks', children }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const dragRef = React.useRef(null);
   const offsetRef = React.useRef({ x: 16, y: 16 });
   const PAD = 16;
@@ -1761,7 +1784,14 @@ function TweaksPanel({ title = 'Tweaks', children }) {
     window.addEventListener('mouseup', up);
   };
 
-  if (!open) return null;
+  if (!open) return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <button className="twk-reopen" onClick={() => setOpen(true)}>
+        <span aria-hidden="true">⚙</span> {title}
+      </button>
+    </>
+  );
   return (
     <>
       <style>{__TWEAKS_STYLE}</style>
